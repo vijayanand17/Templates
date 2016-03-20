@@ -81,9 +81,13 @@
         "InfaDBName": "model",
         "InfaDBPort": "1433",
 
-        "imagePublisher": "informatica",
+        /*"imagePublisher": "informatica",
         "imageOffer": "powercenter-v10-domain-image-ubuntu14-04-3-preview",
-        "osVersion": "byol_ubuntu_for_pc_10"
+        "osVersion": "byol_ubuntu_for_pc_10"*/
+
+        "imagePublisher": "Canonical",
+        "imageOffer": "UbuntuServer",
+        "osVersion": "14.04.3-LTS"
     },
     "resources": [
         {
