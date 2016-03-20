@@ -1,0 +1,367 @@
+﻿{
+    "handler": "Microsoft.Compute.MultiVm",
+    "version": "0.0.1-preview",
+    "parameters": {
+        "basics": [
+        ],
+        "steps": [
+            {
+                "name": "nodeVMConfiguration",
+                "label": "Node Settings",
+                "subLabel": {
+                    "preValidation": "Configure the machine settings for the node",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Node Settings",
+                "elements": [
+                    {
+                        "name": "infavnet",
+                        "type": "Microsoft.Network.VirtualNetworkCombo",
+                        "label": {
+                            "virtualNetwork": "Virtual network",
+                            "subnets": "Subnets"
+                        },
+                        "toolTip": {
+                            "virtualNetwork": "Virtual network all resource required to be part of",
+                            "subnets": ""
+                        },
+                        "defaultValue": {
+                            "name": "InformaticaVNET",
+                            "addressPrefixSize": "/16"
+                        },
+                        "constraints": {
+                            "minAddressPrefixSize": "/29"
+                        },
+                        "subnets": {
+                            "subnet1": {
+                                "label": "Subnet",
+                                "defaultValue": {
+                                    "name": "InfaSubnet",
+                                    "addressPrefixSize": "/24"
+                                },
+                                "constraints": {
+                                    "minAddressPrefixSize": "/29",
+                                    "minAddressCount": 2,
+                                    "requireContiguousAddresses": true
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "storageAccount",
+                        "type": "Microsoft.Storage.StorageAccountSelector",
+                        "label": "Storage account",
+                        "toolTip": "Storage account used for the machines",
+                        "defaultValue": {
+                            "type": "Standard_LRS"
+                        }
+                    },
+                    {
+                        "name": "domainNodeCount",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Number of nodes",
+                        "defaultValue": "2",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "name": "nodeVMPrefix",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Machine prefix",
+                        "defaultValue": "VM",
+                        "toolTip": "Prefix for the  machines name.",
+                        "constraints": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "name": "nodeVMAdminUsername",
+                        "type": "Microsoft.Compute.UserNameTextBox",
+                        "label": "Username",
+                        "toolTip": "Administrator username for the machines",
+                        "osPlatform": "Linux",
+                        "constraints": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "name": "nodeVMAdminPassword",
+                        "type": "Microsoft.Compute.CredentialsCombo",
+                        "label": {
+                            "password": "Password",
+                            "confirmPassword": "Confirm password",
+                            "sshPublicKey": "SSH public key"
+                        },
+                        "toolTip": {
+                            "authenticationType": "",
+                            "password": "Administrator password for the machines",
+                            "sshPublicKey": "Administrator public key for the machines"
+                        },
+                        "osPlatform": "Linux",
+                        "constraints": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "name": "nodeVMSize",
+                        "type": "Microsoft.Compute.SizeSelector",
+                        "label": "Machine size",
+                        "toolTip": "The size of the machine",
+                        "recommendedSizes": [
+                            "Standard_D11",
+                            "Standard_D2"
+                        ],
+                        "constraints": {
+                            "allowedSizes": [
+                                "Standard_A1",
+                                "Standard_A2",
+                                "Standard_A3",
+                                "Standard_A4",
+                                "Standard_A11",
+                                "Standard_D1",
+                                "Standard_D2",
+                                "Standard_D3",
+                                "Standard_D4",
+                                "Standard_D11",
+                                "Standard_D12",
+                                "Standard_D13",
+                                "Standard_D14"
+                            ]
+                        },
+                        "osPlatform": "Windows",
+                        "imageReference": {
+                            "publisher": "MicrosoftSQLServer",
+                            "offer": "SQL2014-WS2012R2",
+                            "sku": "Enterprise"
+                        },
+                        "count": "[steps('nodeVMConfiguration').domainNodeCount]"
+                    }
+                ]
+            },
+            {
+                "name": "databaseConfiguration",
+                "label": "Database settings",
+                "subLabel": {
+                    "preValidation": "Configure the database settings",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Database settings",
+                "elements": [
+                    {
+                        "name": "databaseType",
+                        "type": "Microsoft.Common.DropDown",
+                        "label": "Database type",
+                        "defaultValue": "SQL Server 2014",
+                        "toolTip": "",
+                        "constraints": {
+                            "allowedValues": [
+                                {
+                                    "label": "SQL Server 2014",
+                                    "value": "sqlserver"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "databaseName",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Database  machine name",
+                        "constraints": {
+                            "required": true,
+                            "regex": "^[A-Za-z0-9_]{1,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscores are allowed, and the value must be 1-30 characters long"
+                        },
+                        "options": { }
+                    },
+                    {
+                        "name": "databaseVMSize",
+                        "type": "Microsoft.Compute.SizeSelector",
+                        "label": "Database  machine size",
+                        "toolTip": "The size of the machine for the repository database",
+                        "recommendedSizes": [
+                            "Standard_D3",
+                            "Standard_D4",
+                            "Standard_D5"
+                        ],
+                        "constraints": {
+                            "allowedSizes": [
+                                "Standard_A1",
+                                "Standard_A2",
+                                "Standard_A3",
+                                "Standard_A4",
+                                "Standard_A11",
+                                "Standard_D1",
+                                "Standard_D2",
+                                "Standard_D3",
+                                "Standard_D4",
+                                "Standard_D11",
+                                "Standard_D12",
+                                "Standard_D13",
+                                "Standard_D14"
+                            ]
+                        },
+                        "osPlatform": "Windows",
+                        "imageReference": {
+                            "publisher": "MicrosoftSQLServer",
+                            "offer": "SQL2014-WS2012R2",
+                            "sku": "Enterprise"
+                        },
+                        "count": 1
+                    },
+                    {
+                        "name": "dbVMAdminUsername",
+                        "type": "Microsoft.Compute.UserNameTextBox",
+                        "label": "Username",
+                        "toolTip": "Admin username for the  machines",
+                        "osPlatform": "Windows",
+                        "constraints": {
+                            "required": true,
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                        }
+                    },
+                    {
+                        "name": "dbVMAdminPassword",
+                        "type": "Microsoft.Compute.CredentialsCombo",
+                        "label": {
+                            "password": "Password",
+                            "confirmPassword": "Confirm password"
+                        },
+                        "toolTip": {
+                            "password": "Admin password for the  machines"
+                        },
+                        "osPlatform": "Windows",
+                        "constraints": {
+                            "required": true
+                        }
+                    },
+                    {
+                        "name": "infaDomainDBUser",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Informatica domain DB user",
+                        "defaultValue": "",
+                        "toolTip": "Check Informatica 961HF3 commandline reference document.",
+                        "constraints": {
+                            "required": true,
+                            "regex": "^[a-z0-9A-Z_]{1,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                        }
+                    },
+                    {
+                        "name": "infaDomainDBPassword",
+                        "type": "Microsoft.Common.PasswordBox",
+                        "label": {
+                            "password": "Informatica domain DB password",
+                            "confirmPassword": "Confirm Informatica domain DB password"
+                        },
+                        "constraints": {
+                            "required": true,
+                            "regex": "^.{4,}$",
+                            "validationMessage": "Password must at least 4 characters in length"
+                        },
+                        "options": {
+                            "hideConfirmation": false
+                        }
+                    }
+                ]
+            },
+            {
+                "label": "Informatica Domain settings",
+                "name": "infaDomainConfiguration",
+                "subLabel": {
+                    "preValidation": "Configure the Informatica Domain settings",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Informatica Domain settings",
+                "elements": [
+                    {
+                        "name": "infaDomainName",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Informatica domain name",
+                        "defaultValue": "Azure_Domain",
+                        "toolTip": "Check Informatica 961HF3 commandline reference document",
+                        "constraints": {
+                            "required": true,
+                            "regex": "^[a-z0-9A-Z_]{1,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                        }
+                    },
+                    {
+                        "name": "infaDomainUser",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Informatica domain user",
+                        "defaultValue": "Administrator",
+                        "toolTip": "Check Informatica 961HF3 commandline reference document",
+                        "constraints": {
+                            "required": true,
+                            "regex": "^[a-z0-9A-Z_]{1,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                        }
+                    },
+                    {
+                        "name": "infaDomainPassword",
+                        "type": "Microsoft.Common.PasswordBox",
+                        "label": {
+                            "password": "Informatica domain password",
+                            "confirmPassword": "Confirm Informatica domain password"
+                        },
+                        "constraints": {
+                            "required": true,
+                            "regex": "^.{4,}$",
+                            "validationMessage": "Password must at least 4 characters in length."
+                        },
+                        "options": {
+                            "hideConfirmation": false
+                        }
+
+                    },
+                    {
+                        "name": "infaDomainEncryptionKeyword",
+                        "type": "Microsoft.Common.PasswordBox",
+                        "label": {
+                            "password": "Keyphrase for encryption for domain",
+                            "confirmPassword": "Confirm keyphrase for encryption for domain"
+                        },
+                        "constraints": {
+                            "required": true,
+                            "regex": "^.{8,}$",
+                            "validationMessage": "Keyphrase must at least 8 characters in length"
+                        },
+                        "options": {
+                            "hideConfirmation": true
+                        }
+                    }
+                ]
+            }
+        ],
+
+        "outputs": {
+            "location": "[location()]",
+            "vnetName": "[steps('nodeVMConfiguration').infavnet.name]",
+            "vnetAddressPrefix": "[steps('nodeVMConfiguration').infavnet.virtualNetwork]",
+            "subnetName": "[steps('nodeVMConfiguration').infavnet.subnets.subnet1.name]",
+            "subnetPrefix": "[steps('nodeVMConfiguration').infavnet.subnets.subnet1.addressPrefix]",
+            "storageName": "[steps('nodeVMConfiguration').storageAccount.name]",
+            "storageType": "[steps('nodeVMConfiguration').storageAccount.type]",
+            "storageExistingOrNew": "[steps('nodeVMConfiguration').storageAccount.storageAccountNewOrExisting]",
+            "VMCount": "[steps('nodeVMConfiguration').domainNodeCount]",
+            "VMNamePrefix": "[steps('nodeVMConfiguration').nodeVMPrefix]",
+            "VMAdminUserName": "[steps('nodeVMConfiguration').nodeVMAdminUsername]",
+            "VMAuthType": "[steps('nodeVMConfiguration').nodeVMAdminPassword.authenticationType]",
+            "VMAdminPassword": "[steps('nodeVMConfiguration').nodeVMAdminPassword.password]",
+            "VMAdminSshPublicKey": "[steps('nodeVMConfiguration').nodeVMAdminPassword.sshPublicKey]",
+            "NodeVMSize": "[steps('nodeVMConfiguration').nodeVMSize]",
+            "VM01Name": "[steps('databaseConfiguration').databaseName]",
+            "DBVMSize": "[steps('databaseConfiguration').databaseVMSize]",
+            "VM01AdminUsername": "[steps('databaseConfiguration').dbVMAdminUsername]",
+            "VM01AdminPassword": "[steps('databaseConfiguration').dbVMAdminPassword]",
+            "DBUser": "[steps('databaseConfiguration').infaDomainDBUser]",
+            "DBPassword": "[steps('databaseConfiguration').infaDomainDBPassword]",
+            "InfaDomainName": "[steps('infaDomainConfiguration').infaDomainName]",
+            "InfaDomainUser": "[steps('infaDomainConfiguration').infaDomainUser]",
+            "InfaDomainPassword": "[steps('infaDomainConfiguration').infaDomainPassword]",
+            "InfaKeyWord": "[steps('infaDomainConfiguration').infaDomainEncryptionKeyword]"
+        }
+    }
+}
