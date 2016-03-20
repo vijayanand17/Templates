@@ -43,13 +43,13 @@
         "VNetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNetName'))]",
         "SubnetId": "[concat(variables('VNetID'), '/subnets/', parameters('SubnetName'))]",
 
-        /*"imagePublisher": "informatica",
+        "imagePublisher": "informatica",
         "imageOffer": "sqlserver-2014-image-preview",
-        "osVersion": "sqlserver-2014-image-for-pc-bdm"*/
+        "osVersion": "sqlserver-2014-image-for-pc-bdm"
 
-        "imagePublisher": "MicrosoftWindowsServer",
+        /*"imagePublisher": "MicrosoftWindowsServer",
         "imageOffer": "WindowsServer",
-        "osVersion": "2012-R2-Datacenter"
+        "osVersion": "2012-R2-Datacenter"*/
     },
     "resources": [
         {
