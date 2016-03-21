@@ -152,7 +152,7 @@
                     "adminUsername": "[parameters('VMAdminUsername')]",
                     "adminPassword": "[parameters('VMAdminPassword')]"
                 },
-                 "storageProfile": {
+                "storageProfile": {
                     "imageReference": {
                         "publisher": "[variables('imagePublisher')]",
                         "offer": "[variables('imageOffer')]",
@@ -196,7 +196,9 @@
                         "settings": {
                             "fileUris": [
                                 "[concat(variables('ExtScriptURI'),  variables('ExtWIScriptFile'))]"
-                            ],
+                            ]
+                        },
+                        "protectedSettings": {
                             "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', variables('ExtWIScriptFile'), ' -domainHost ', concat(parameters('VMNamePrefix'), '1'), ' -domainName ', parameters('InfaDomainName'), ' -domainUser ', parameters('InfaDomainUser'), ' -domainPassword ', parameters('InfaDomainPassword'), ' -nodeName ', parameters('InfaNodeNamePrefix'), '1', ' -nodePort ', variables('InfaNode1Port'), ' -dbType ', variables('InfaDBType'), ' -dbName ', variables('InfaDBName'), ' -dbUser ', parameters('DBUser'), ' -dbPassword ', parameters('DBPassword'), ' -dbHost ', parameters('VM01Name'), ' -dbPort ', variables('InfaDBPort'), ' -sitekeyKeyword ', parameters('InfaKeyWord'), ' -joinDomain 0 -osUserName ', parameters('VMAdminUserName'), ' -storageName ', parameters('storageName'), ' -storageKey ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).key1)]"
                         }
                     }
@@ -329,7 +331,9 @@
                         "settings": {
                             "fileUris": [
                                 "[concat(variables('ExtScriptURI'),  variables('ExtWIScriptFile'))]"
-                            ],
+                            ]
+                        },
+                        "protectedSettings": {
                             "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', variables('ExtWIScriptFile'), ' -domainHost ', concat(parameters('VMNamePrefix'), '1'), ' -domainName ', parameters('InfaDomainName'), ' -domainUser ', parameters('InfaDomainUser'), ' -domainPassword ', parameters('InfaDomainPassword'), ' -nodeName ', parameters('InfaNodeNamePrefix'), add(copyIndex(), 2), ' -nodePort ', variables('InfaNode1Port'), ' -dbType ', variables('InfaDBType'), ' -dbName ', variables('InfaDBName'), ' -dbUser ', parameters('DBUser'), ' -dbPassword ', parameters('DBPassword'), ' -dbHost ', parameters('VM01Name'), ' -dbPort ', variables('InfaDBPort'), ' -sitekeyKeyword ', parameters('InfaKeyWord'), ' -joinDomain 1 -osUserName ', parameters('VMAdminUserName'), ' -storageName ', parameters('storageName'), ' -storageKey ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2015-05-01-preview').key1)]"
                         }
                     }

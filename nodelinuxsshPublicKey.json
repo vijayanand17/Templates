@@ -81,13 +81,13 @@
         "InfaDBName": "model",
         "InfaDBPort": "1433",
 
-        /*"imagePublisher": "informatica",
+        "imagePublisher": "informatica",
         "imageOffer": "powercenter-v10-domain-image-ubuntu14-04-3-preview",
-        "osVersion": "byol_ubuntu_for_pc_10"*/
+        "osVersion": "byol_ubuntu_for_pc_10"
 
-        "imagePublisher": "Canonical",
+        /*"imagePublisher": "Canonical",
         "imageOffer": "UbuntuServer",
-        "osVersion": "14.04.3-LTS"
+        "osVersion": "14.04.3-LTS"*/
     },
     "resources": [
         {
@@ -215,7 +215,9 @@
                         "settings": {
                             "fileUris": [
                                 "[concat(variables('ExtScriptURI'),  variables('ExtWIScriptFile'))]"
-                            ],
+                            ]
+                        },
+                        "protectedSettings": {
                             "commandToExecute": "[concat('sh ', variables('ExtWIScriptFile'), ' ', concat(parameters('VMNamePrefix'), '1'), ' ', parameters('InfaDomainName'), ' ', parameters('InfaDomainUser'), ' ', parameters('InfaDomainPassword'), ' ', parameters('InfaNodeNamePrefix'), add(variables('Index'), 1), ' ', variables('InfaNode1Port'), ' ', variables('InfaDBType'), ' ', variables('InfaDBName'), ' ', parameters('DBUser'), ' ', parameters('DBPassword'), ' ', parameters('VM01Name'), ' ', variables('InfaDBPort'), ' ', parameters('InfaKeyWord'), ' ', variables('Index'), ' ', parameters('VMAdminUserName'), ' ', parameters('storageName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2015-05-01-preview').key1)]"
                         }
                     }

@@ -159,7 +159,7 @@
                 "osProfile": {
                     "computerName": "[concat(parameters('VMNamePrefix'), '1')]",
                     "adminUsername": "[parameters('VMAdminUsername')]",
-                     "adminUsername": "[parameters('VMAdminUsername')]",
+                    "adminUsername": "[parameters('VMAdminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": "true",
                         "ssh": {
@@ -216,7 +216,9 @@
                         "settings": {
                             "fileUris": [
                                 "[concat(variables('ExtScriptURI'),  variables('ExtWIScriptFile'))]"
-                            ],
+                            ]
+                        },
+                        "protectedSettings": {
                             "commandToExecute": "[concat('sh ', variables('ExtWIScriptFile'), ' ', concat(parameters('VMNamePrefix'), '1'), ' ', parameters('InfaDomainName'), ' ', parameters('InfaDomainUser'), ' ', parameters('InfaDomainPassword'), ' ', parameters('InfaNodeNamePrefix'), '1', ' ', variables('InfaNode1Port'), ' ', variables('InfaDBType'), ' ', variables('InfaDBName'), ' ', parameters('DBUser'), ' ', parameters('DBPassword'), ' ', parameters('VM01Name'), ' ', variables('InfaDBPort'), ' ', parameters('InfaKeyWord'), ' 0 ', parameters('VMAdminUserName'), ' ', parameters('storageName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]).key1)]"
                         }
                     }
@@ -303,7 +305,7 @@
                 "osProfile": {
                     "computerName": "[concat(parameters('VMNamePrefix'), add(copyIndex(), 2))]",
                     "adminUsername": "[parameters('VMAdminUsername')]",
-                     "adminUsername": "[parameters('VMAdminUsername')]",
+                    "adminUsername": "[parameters('VMAdminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": "true",
                         "ssh": {
@@ -360,7 +362,9 @@
                         "settings": {
                             "fileUris": [
                                 "[concat(variables('ExtScriptURI'),  variables('ExtWIScriptFile'))]"
-                            ],
+                            ]
+                        },
+                        "protectedSettings": {
                             "commandToExecute": "[concat('sh ', variables('ExtWIScriptFile'), ' ', concat(parameters('VMNamePrefix'), '1'), ' ', parameters('InfaDomainName'), ' ', parameters('InfaDomainUser'), ' ', parameters('InfaDomainPassword'), ' ', parameters('InfaNodeNamePrefix'), add(copyIndex(), 2), ' ', variables('InfaNode1Port'), ' ', variables('InfaDBType'), ' ', variables('InfaDBName'), ' ', parameters('DBUser'), ' ', parameters('DBPassword'), ' ', parameters('VM01Name'), ' ', variables('InfaDBPort'), ' ', parameters('InfaKeyWord'), ' 1 ', parameters('VMAdminUserName'), ' ', parameters('storageName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2015-05-01-preview').key1)]"
                         }
                     }

@@ -165,9 +165,11 @@
                         "settings": {
                             "fileUris": [
                                 "[concat(variables('ExtScriptURI'),  variables('ExtCDBScriptFile'))]"
-                            ],
+                            ]           
+                        },
+                        "protectedSettings": {
                             "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', variables('ExtCDBScriptFile'), ' -dbUserName ', parameters('DBUser'), ' -dbPassword ', parameters('DBPassword'))]"
-                        }
+                      }
                     }
                 }
             ]
