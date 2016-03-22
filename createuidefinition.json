@@ -254,8 +254,8 @@
                         },
                         "constraints": {
                             "required": true,
-                            "regex": "^(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;\"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{5,}$",
-                            "validationMessage": "Password must be at least 5 characters in length. Should contain at least one special, number, upper-case and lower-case character"
+                            "regex": "^.{4,}$",
+                            "validationMessage": "Password must at least 4 characters in length"
                         },
                         "options": {
                             "hideConfirmation": false
@@ -305,8 +305,8 @@
                         },
                         "constraints": {
                             "required": true,
-                            "regex": "^.{4,}$",
-                            "validationMessage": "Password must at least 4 characters in length."
+                            "regex": "^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d\\W])|(?=.*\\W)(?=.*\\d))|(?=.*\\W)(?=.*[A-Z])(?=.*\\d)).{5,72}$",
+                            "validationMessage": "Password must be at least 5 characters in length. Should contain at least one special, number, upper-case and lower-case character"
                         },
                         "options": {
                             "hideConfirmation": false
@@ -322,8 +322,8 @@
                         },
                         "constraints": {
                             "required": true,
-                            "regex": "^(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;\"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}$",
-                            "validationMessage": "Keyphrase must be at least 5 characters in length. Should contain at least one special, number, upper-case and lower-case character"
+                            "regex": "^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d\\W])|(?=.*\\W)(?=.*\\d))|(?=.*\\W)(?=.*[A-Z])(?=.*\\d)).{8,72}$",
+                            "validationMessage": "Keyphrase must be at least 8 characters in length. Should contain at least one special, number, upper-case and lower-case character"
                         },
                         "options": {
                             "hideConfirmation": true
