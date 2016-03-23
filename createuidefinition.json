@@ -342,7 +342,7 @@
 			"subnetPrefix": "[steps('nodeVMConfiguration').infavnet.subnets.subnet1.addressPrefix]",
 			"storageName": "[steps('nodeVMConfiguration').storageAccount.name]",
 			"storageType": "[steps('nodeVMConfiguration').storageAccount.type]",
-			"storageExistingOrNew": "[steps('nodeVMConfiguration').storageAccount.storageAccountNewOrExisting]",
+			"storageExistingOrNew": "[steps('nodeVMConfiguration').storageAccount.newOrExisting]",
 			"VMCount": "[steps('nodeVMConfiguration').domainNodeCount]",
 			"VMNamePrefix": "[steps('nodeVMConfiguration').nodeVMPrefix]",
 			"VMAdminUserName": "[steps('nodeVMConfiguration').nodeVMAdminUsername]",
