@@ -105,11 +105,11 @@
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VM01NicName'))]"
             ],
-            "plan": {
+            /*"plan": {
                 "name": "BYOL",
                 "publisher": "[variables('imagePublisher')]",
                 "product": "[variables('imageOffer')]"
-            },
+            },*/
             "tags": {
                 "displayName": "VM01"
             },

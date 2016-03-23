@@ -135,11 +135,11 @@
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VMNicNamePrefix'), '1')]"
             ],
-            "plan": {
+            /*"plan": {
                 "name": "BYOL",
                 "publisher": "[variables('imagePublisher')]",
                 "product": "[variables('imageOffer')]"
-            },
+            },*/
             "tags": {
                 "displayName": "nodevm"
             },
@@ -280,11 +280,11 @@
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VMNicNamePrefix'), add(copyIndex(), 2))]",
                 "[concat('Microsoft.Compute/virtualMachines/', parameters('VMNamePrefix'), '1')]"
             ],
-            "plan": {
+            /*"plan": {
                 "name": "BYOL",
                 "publisher": "[variables('imagePublisher')]",
                 "product": "[variables('imageOffer')]"
-            },
+            },*/
             "copy": {
                 "name": "gatewayCount",
                 "count": "[variables('gatewayCount')]"
