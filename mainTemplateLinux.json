@@ -120,7 +120,7 @@
         "nodeUriList": [
             "nodelinux",
             "nodelinux",
-            "nodemultiplelinux"
+            "nodemultilinux"
         ],
 
         "nodeIndex": "[add(mod(add(sub(parameters('VMCount'),2),sub(parameters('VMCount'),1)),2),1)]",
