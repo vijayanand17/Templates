@@ -152,7 +152,7 @@
                     "adminUsername": "[parameters('VMAdminUsername')]",
                     "adminPassword": "[parameters('VMAdminPassword')]"
                 },
-                "storageProfile": {
+                /*"storageProfile": {
                     "imageReference": {
                         "publisher": "[variables('imagePublisher')]",
                         "offer": "[variables('imageOffer')]",
@@ -165,6 +165,20 @@
                         "createOption": "FromImage",
                         "vhd": {
                             "uri": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), '1', '.osdisk.vhd')]"
+                        }
+                    }
+                },*/
+                "storageProfile": {
+                    "osDisk": {
+                        "name": "VMDisk",
+                        "osType": "windows",
+                        "caching": "ReadWrite",
+                        "createOption": "FromImage",
+                        "image": {
+                            "uri": "[variables('InfaCustomeVMImage')]"
+                        },
+                        "vhd": {
+                            "uri": "[concat('https://ispstorenp.blob.core.windows.net/copiedvhds/', 'InfaBaseShareTest1.multi.osdisk.vhd')]"
                         }
                     }
                 },
@@ -287,7 +301,7 @@
                     "adminUsername": "[parameters('VMAdminUsername')]",
                     "adminPassword": "[parameters('VMAdminPassword')]"
                 },
-                "storageProfile": {
+                /*"storageProfile": {
                     "imageReference": {
                         "publisher": "[variables('imagePublisher')]",
                         "offer": "[variables('imageOffer')]",
@@ -300,6 +314,20 @@
                         "createOption": "FromImage",
                         "vhd": {
                             "uri": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), add(copyIndex(), 2), '.osdisk.vhd')]"
+                        }
+                    }
+                },*/
+                "storageProfile": {
+                    "osDisk": {
+                        "name": "VMDisk",
+                        "osType": "windows",
+                        "caching": "ReadWrite",
+                        "createOption": "FromImage",
+                        "image": {
+                            "uri": "[variables('InfaCustomeVMImage')]"
+                        },
+                        "vhd": {
+                            "uri": "[concat('https://ispstorenp.blob.core.windows.net/copiedvhds/', 'InfaBaseShareTest', add(copyIndex(), 2), '.multi.osdisk.vhd')]"
                         }
                     }
                 },

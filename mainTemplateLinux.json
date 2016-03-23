@@ -2,6 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location": {
+            "type": "string"
+        },
         "storageExistingOrNew": {
             "type": "string",
             "allowedValues": [
@@ -119,12 +122,6 @@
             "nodelinux",
             "nodemultiplelinux"
         ],
-
-        // Create link with branch password and ssh
-        // Add parameters in the deployment resource
-        // Rename the template json to match the branches
-        // Modify password template to accept new params
-        // Create new templates for ssh key authenication and path variable for ssh key
 
         "nodeIndex": "[add(mod(add(sub(parameters('VMCount'),2),sub(parameters('VMCount'),1)),2),1)]",
         "nodeVMUri": "[concat(variables('baseuri'), variables('nodeUriList')[variables('nodeIndex')], parameters('VMAuthType'), '.json')]",

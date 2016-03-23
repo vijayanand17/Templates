@@ -38,6 +38,7 @@
         "ExtScriptURI": "https://raw.githubusercontent.com/vijayanand17/infascripts/master/",
         "ExtCDBScriptFile": "createsqldbuser.ps1",
 
+        "InfaCustomeDBVMImage": "https://ispstorenp.blob.core.windows.net/copiedvhds/BaseSQL142102201602-os-2016-02-21-11DE904C.vhd",
         "InfaCustomVMDisk1": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), '.SQLServer2014.osdisk.vhd')]",
 
         "VNetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNetName'))]",
@@ -121,7 +122,7 @@
                     "adminUsername": "[parameters('VM01AdminUsername')]",
                     "adminPassword": "[parameters('VM01AdminPassword')]"
                 },
-                "storageProfile": {
+                /*"storageProfile": {
                     "imageReference": {
                         "publisher": "[variables('imagePublisher')]",
                         "offer": "[variables('imageOffer')]",
@@ -134,6 +135,20 @@
                         "createOption": "FromImage",
                         "vhd": {
                             "uri": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), '.osdisk.vhd')]"
+                        }
+                    }
+                },*/
+                "storageProfile": {
+                    "osDisk": {
+                        "name": "VM01OSDisk",
+                        "osType": "[variables('dbOsType')]",
+                        "caching": "ReadWrite",
+                        "createOption": "FromImage",
+                        "image": {
+                            "uri": "[variables('InfaCustomeDBVMImage')]"
+                        },
+                        "vhd": {
+                            "uri": "[variables('InfaCustomVMDisk1')]"
                         }
                     }
                 },
@@ -165,11 +180,11 @@
                         "settings": {
                             "fileUris": [
                                 "[concat(variables('ExtScriptURI'),  variables('ExtCDBScriptFile'))]"
-                            ]           
+                            ]
                         },
                         "protectedSettings": {
                             "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', variables('ExtCDBScriptFile'), ' -dbUserName ', parameters('DBUser'), ' -dbPassword ', parameters('DBPassword'))]"
-                      }
+                        }
                     }
                 }
             ]
