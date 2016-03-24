@@ -145,7 +145,7 @@
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VMNicNamePrefix'), '1')]"
             ],
             "plan": {
-                "name": "BYOL",
+                "name": "[variables('osVersion')]",
                 "publisher": "[variables('imagePublisher')]",
                 "product": "[variables('imageOffer')]"
             },
@@ -253,11 +253,6 @@
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('VMPublicDNSName'), add(copyIndex(), 2))]"
             ],
-            "plan": {
-                "name": "BYOL",
-                "publisher": "[variables('imagePublisher')]",
-                "product": "[variables('imageOffer')]"
-            },
             "copy": {
                 "name": "gatewayCount",
                 "count": "[variables('gatewayCount')]"
@@ -291,6 +286,11 @@
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VMNicNamePrefix'), add(copyIndex(), 2))]",
                 "[concat('Microsoft.Compute/virtualMachines/', parameters('VMNamePrefix'), '1')]"
             ],
+            "plan": {
+                "name": "[variables('osVersion')]",
+                "publisher": "[variables('imagePublisher')]",
+                "product": "[variables('imageOffer')]"
+            },
             "copy": {
                 "name": "gatewayCount",
                 "count": "[variables('gatewayCount')]"

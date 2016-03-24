@@ -99,6 +99,7 @@
 
             "tags": {
                 "displayName": "publicip"
+
             },
             "properties": {
                 "publicIPAllocationMethod": "Dynamic",
@@ -148,7 +149,7 @@
                 "displayName": "nodevm"
             },
             "plan": {
-                "name": "BYOL",
+                "name": "[variables('osVersion')]",
                 "publisher": "[variables('imagePublisher')]",
                 "product": "[variables('imageOffer')]"
             },
