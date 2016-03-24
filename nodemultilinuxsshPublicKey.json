@@ -114,7 +114,7 @@
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
-                "[concat('Microsoft.Network/publicIPAddresses/', concat(variables('VMPublicDNSName'), '1'))]"
+                "[concat('Microsoft.Network/publicIPAddresses/', variables('VMPublicDNSName'), '1')]"
             ],
             "tags": {
                 "displayName": "niccard"
