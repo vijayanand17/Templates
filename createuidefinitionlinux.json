@@ -6,14 +6,23 @@
         ],
         "steps": [
             {
-                "name": "nodeVMConfiguration",
-                "label": "Node Settings",
+                "name": "infraConfiguration",
+                "label": "Infrastructure Settings",
                 "subLabel": {
-                    "preValidation": "Configure the machine settings for the node",
+                    "preValidation": "Configure the storage and VNET settings for the VMs",
                     "postValidation": "Done"
                 },
-                "bladeTitle": "Node Settings",
+                "bladeTitle": "Infrastructure Settings",
                 "elements": [
+                    {
+                        "name": "storageAccount",
+                        "type": "Microsoft.Storage.StorageAccountSelector",
+                        "label": "Storage account",
+                        "toolTip": "Storage account used for the machines",
+                        "defaultValue": {
+                            "type": "Standard_LRS"
+                        }
+                    },
                     {
                         "name": "infavnet",
                         "type": "Microsoft.Network.VirtualNetworkCombo",
@@ -46,16 +55,18 @@
                                 }
                             }
                         }
-                    },
-                    {
-                        "name": "storageAccount",
-                        "type": "Microsoft.Storage.StorageAccountSelector",
-                        "label": "Storage account",
-                        "toolTip": "Storage account used for the machines",
-                        "defaultValue": {
-                            "type": "Standard_LRS"
-                        }
-                    },
+                    }
+                ]
+            },
+            {
+                "name": "nodeVMConfiguration",
+                "label": "Node Settings",
+                "subLabel": {
+                    "preValidation": "Configure the machine settings for the node",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Node Settings",
+                "elements": [
                     {
                         "name": "domainNodeCount",
                         "type": "Microsoft.Common.TextBox",
@@ -338,14 +349,14 @@
 
         "outputs": {
             "location": "[location()]",
-            "vnetName": "[steps('nodeVMConfiguration').infavnet.name]",
-            "vnetAddressPrefix": "[steps('nodeVMConfiguration').infavnet.addressPrefix]",
-            "vnetExistingOrNew": "[steps('nodeVMConfiguration').infavnet.newOrExisting]",
-            "subnetName": "[steps('nodeVMConfiguration').infavnet.subnets.subnet1.name]",
-            "subnetPrefix": "[steps('nodeVMConfiguration').infavnet.subnets.subnet1.addressPrefix]",
-            "storageName": "[steps('nodeVMConfiguration').storageAccount.name]",
-            "storageType": "[steps('nodeVMConfiguration').storageAccount.type]",
-            "storageExistingOrNew": "[steps('nodeVMConfiguration').storageAccount.newOrExisting]",
+            "storageName": "[steps('infraConfiguration').storageAccount.name]",
+            "storageType": "[steps('infraConfiguration').storageAccount.type]",
+            "storageExistingOrNew": "[steps('infraConfiguration').storageAccount.newOrExisting]",
+            "vnetName": "[steps('infraConfiguration').infavnet.name]",
+            "vnetAddressPrefix": "[steps('infraConfiguration').infavnet.addressPrefix]",
+            "vnetExistingOrNew": "[steps('infraConfiguration').infavnet.newOrExisting]",
+            "subnetName": "[steps('infraConfiguration').infavnet.subnets.subnet1.name]",
+            "subnetPrefix": "[steps('infraConfiguration').infavnet.subnets.subnet1.addressPrefix]",
             "VMCount": "[steps('nodeVMConfiguration').domainNodeCount]",
             "VMNamePrefix": "[steps('nodeVMConfiguration').nodeVMPrefix]",
             "VMAdminUserName": "[steps('nodeVMConfiguration').nodeVMAdminUsername]",
@@ -357,7 +368,7 @@
             "DBVMSize": "[steps('databaseConfiguration').databaseVMSize]",
             "databaseType": "[steps('databaseConfiguration').databaseType]",
             "VM01AdminUsername": "[steps('databaseConfiguration').dbVMAdminUsername]",
-            "VM01AdminPassword": "[steps('databaseConfiguration').dbVMAdminPassword]",
+            "VM01AdminPassword": "[steps('databaseConfiguration').dbVMAdminPassword.password]",
             "DBUser": "[steps('databaseConfiguration').infaDomainDBUser]",
             "DBPassword": "[steps('databaseConfiguration').infaDomainDBPassword]",
             "InfaDomainName": "[steps('infaDomainConfiguration').infaDomainName]",
