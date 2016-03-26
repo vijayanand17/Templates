@@ -71,7 +71,7 @@
                         "name": "domainNodeCount",
                         "type": "Microsoft.Common.TextBox",
                         "label": "Number of nodes",
-                        "defaultValue": 2,
+                        "defaultValue": "2",
                         "toolTip": "",
                         "constraints": {
                             "required": true
@@ -82,7 +82,7 @@
                         "type": "Microsoft.Common.TextBox",
                         "label": "Machine prefix",
                         "defaultValue": "VM",
-                        "toolTip": "Prefix for the  machines name.",
+                        "toolTip": "Prefix for the machines name.",
                         "constraints": {
                             "required": true
                         }

@@ -172,8 +172,8 @@
             }
         },
         "VMCount": {
-            "type": "int",
-            "defaultValue": 2,
+            "type": "string",
+            "defaultValue": "2",
             "metadata": {
                 "description": "Node VM count"
             }
@@ -225,7 +225,8 @@
             "nodemultilinux"
         ],
 
-        "nodeIndex": "[add(mod(add(sub(parameters('VMCount'),2),sub(parameters('VMCount'),1)),2),1)]",
+        "VMCountInt": "[int(parameters('VMCount'))]",
+        "nodeIndex": "[add(mod(add(sub(variables('VMCountInt'),2),sub(variables('VMCountInt'),1)),2),1)]",
         "nodeVMUri": "[concat(variables('baseuri'), variables('nodeUriList')[variables('nodeIndex')], parameters('VMAuthType'), '.json')]",
 
         "InfaNodeNamePrefix": "node"
@@ -376,7 +377,7 @@
                         "value": "[parameters('VMNamePrefix')]"
                     },
                     "VMCount": {
-                        "value": "[parameters('VMCount')]"
+                        "value": "[variables('VMCountInt')]"
                     },
                     "InfaDomainName": {
                         "value": "[parameters('InfaDomainName')]"

@@ -71,7 +71,7 @@
                         "name": "domainNodeCount",
                         "type": "Microsoft.Common.TextBox",
                         "label": "Number of nodes",
-                        "defaultValue": 2,
+                        "defaultValue": "2",
                         "toolTip": "",
                         "constraints": {
                             "required": true
