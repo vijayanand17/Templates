@@ -84,10 +84,6 @@
         "imagePublisher": "informatica",
         "imageOffer": "powercenter-v10-domain-image-ubuntu14-04-3-preview",
         "osVersion": "byol_ubuntu_for_pc_10"
-
-        /*"imagePublisher": "Canonical",
-        "imageOffer": "UbuntuServer",
-        "osVersion": "14.04.3-LTS"*/
     },
     "resources": [
         {
@@ -184,7 +180,7 @@
                         "caching": "ReadWrite",
                         "createOption": "FromImage",
                         "vhd": {
-                            "uri": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), add(variables('Index'), 1), '.osdisk.vhd')]"
+                            "uri": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VMNamePrefix'), add(variables('Index'), 1), '.osdisk.vhd')]"
                         }
                     }
                 },
