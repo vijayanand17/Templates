@@ -10,10 +10,18 @@
             "allowedValues": [
                 "existing",
                 "new"
-            ]
+            ],
+            "defaultValue": "new",
+            "metadata": {
+                "description": "Storage new or existing"
+            }
         },
         "storageName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "infastorage",
+            "metadata": {
+                "description": "Storage name"
+            }
         },
         "storageType": {
             "type": "string",
@@ -22,26 +30,49 @@
                 "Standard_LRS",
                 "Standard_GRS",
                 "Standard_ZRS"
-            ]
+            ],
+            "metadata": {
+                "description": "Storage type"
+            }
         },
         "vnetExistingOrNew": {
             "type": "string",
             "allowedValues": [
                 "existing",
                 "new"
-            ]
+            ],
+            "defaultValue": "new",
+            "metadata": {
+                "description": "VNET new or existing"
+            }
         },
         "vnetName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "infavnet",
+            "metadata": {
+                "description": "VNET name"
+            }
         },
         "vnetAddressPrefix": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "VNET address prefix"
+            }
         },
         "subnetName": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "infasubnet",
+            "metadata": {
+                "description": "Subnet name"
+            }
         },
         "subnetPrefix": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Subnet address prefix"
+            }
         },
         "databaseType": {
             "type": "string",
@@ -49,58 +80,121 @@
                 "sqlserver",
                 "sqlserverazure"
             ],
-            "defaultValue": "sqlserver"
+            "defaultValue": "sqlserver",
+            "metadata": {
+                "description": "Database type. Only SQL Server 2014 on VM is supported for now"
+            }
         },
         "VM01Name": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "DVM",
+            "metadata": {
+                "description": "Database VM name"
+            }
         },
         "VM01AdminUsername": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Database VM username"
+            }
         },
         "VM01AdminPassword": {
-            "type": "securestring"
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Database VM password"
+            }
         },
         "DBVMSize": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Standard_D3",
+            "metadata": {
+                "description": "Database VM size"
+            }
         },
         "DBUser": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "user1",
+            "metadata": {
+                "description": "Database user for Informatica domain"
+            }
         },
         "DBPassword": {
-            "type": "securestring"
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Database user password for Informatica domain"
+            }
         },
         "NodeVMSize": {
-            "type": "string"
+            "type": "string",
+            "defaultValue": "Standard_D11",
+            "metadata": {
+                "description": "Node VM size"
+            }
         },
         "VMAdminUserName": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "defaultValue": "azureuser",
+            "metadata": {
+                "description": "Node VM username"
+            }
         },
         "VMAdminPassword": {
-            "type": "securestring"
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Node VM password"
+            }
         },
         "VMNamePrefix": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "defaultValue": "NVM",
+            "metadata": {
+                "description": "Node VM name prefix"
+            }
         },
         "VMCount": {
-            "type": "int"
+            "type": "int",
+            "defaultValue": 2,
+            "metadata": {
+                "description": "Node VM count"
+            }
         },
         "InfaDomainName": {
             "type": "string",
-            "minLength": 4
+            "minLength": 4,
+            "defaultValue": "InfaAzureDomain",
+            "metadata": {
+                "description": "Informatica domain name"
+            }
         },
         "InfaDomainUser": {
             "type": "string",
-            "minLength": 4
+            "minLength": 4,
+            "defaultValue": "Administrator",
+            "metadata": {
+                "description": "Informatica domain username"
+            }
         },
         "InfaDomainPassword": {
             "type": "securestring",
-            "minLength": 4
+            "minLength": 4,
+            "defaultValue": "Administrator",
+            "metadata": {
+                "description": "Informatica domain password"
+            }
         },
         "InfaKeyWord": {
             "type": "securestring",
-            "minLength": 4
+            "minLength": 4,
+            "defaultValue": "",
+            "metadata": {
+                "description": "Informatica domain encryption key keyphrase"
+            }
         }
     },
     "variables": {
