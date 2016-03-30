@@ -7,12 +7,7 @@
         },
         "storageType": {
             "type": "string",
-            "defaultValue": "Standard_LRS",
-            "allowedValues": [
-                "Standard_LRS",
-                "Standard_GRS",
-                "Standard_ZRS"
-            ]
+            "defaultValue": "Standard_LRS"
         }
     },
     "variables": {

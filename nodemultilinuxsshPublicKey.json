@@ -71,7 +71,6 @@
 
         "gatewayCount": "[sub(parameters('VMCount'), 1)]",
 
-        "InfaCustomeVMImage": "https://ispstorenp.blob.core.windows.net/copiedvhds/BaseLU14I1002032016-os-2016-03-02-5156DCD9.vhd",
         "ExtScriptURI": "https://raw.githubusercontent.com/vijayanand17/infascripts/master/",
         "ExtWIScriptFile": "lininfainstaller.sh",
 

@@ -67,7 +67,6 @@
         "VMNicNamePrefix": "[concat(parameters('VMNamePrefix'),'Nic')]",
         "VMSubnetRef": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/', parameters('subnetName'))]",
 
-        "InfaCustomeVMImage": "https://ispstorenp.blob.core.windows.net/copiedvhds/BaseW12I10180220162-os-2016-02-18-7FFBC24.vhd",
         "ExtScriptURI": "https://raw.githubusercontent.com/vijayanand17/infascripts/master/",
         "ExtWIScriptFile": "wininfainstaller.ps1",
 
