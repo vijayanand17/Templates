@@ -94,7 +94,7 @@
                 "label": "Informatica Domain settings",
                 "name": "infaDomainConfiguration",
                 "subLabel": {
-                    "preValidation": "Configure Domain Settings",
+                    "preValidation": "Configure domain settings",
                     "postValidation": "Done"
                 },
                 "bladeTitle": "Informatica Domain settings",
@@ -143,9 +143,10 @@
                     {
                         "name": "infaDomainEncryptionKeyword",
                         "type": "Microsoft.Common.PasswordBox",
+                        "toolTip": "Keyphrase for generating encryption key for domain",
                         "label": {
-                            "password": "Keyphrase for encryption for domain",
-                            "confirmPassword": "Confirm keyphrase for encryption for domain"
+                            "password": "Keyphrase for encryption key",
+                            "confirmPassword": "Confirm keyphrase for encryption key"
                         },
                         "constraints": {
                             "required": true,
@@ -160,12 +161,12 @@
             },
             {
                 "name": "databaseConfiguration",
-                "label": "Database settings",
+                "label": "Database Settings",
                 "subLabel": {
-                    "preValidation": "Configure Database Settings",
+                    "preValidation": "Configure database settings",
                     "postValidation": "Done"
                 },
-                "bladeTitle": "Database settings",
+                "bladeTitle": "Database Settings",
                 "elements": [
                     {
                         "name": "databaseType",
