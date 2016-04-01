@@ -94,13 +94,13 @@
                 ]
             },
             {
-                "label": "Informatica Domain settings",
+                "label": "Informatica Domain Settings",
                 "name": "infaDomainConfiguration",
                 "subLabel": {
                     "preValidation": "Configure domain settings",
                     "postValidation": "Done"
                 },
-                "bladeTitle": "Informatica Domain settings",
+                "bladeTitle": "Informatica Domain Settings",
                 "elements": [
                     {
                         "name": "infaDomainName",
