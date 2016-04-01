@@ -154,7 +154,6 @@
                 "osProfile": {
                     "computerName": "[concat(parameters('VMNamePrefix'), '1')]",
                     "adminUsername": "[parameters('VMAdminUsername')]",
-                    "adminUsername": "[parameters('VMAdminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": "true",
                         "ssh": {
@@ -299,7 +298,6 @@
                 },
                 "osProfile": {
                     "computerName": "[concat(parameters('VMNamePrefix'), add(copyIndex(), 2))]",
-                    "adminUsername": "[parameters('VMAdminUsername')]",
                     "adminUsername": "[parameters('VMAdminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": "true",

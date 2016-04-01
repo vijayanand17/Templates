@@ -29,7 +29,7 @@
                         "type": "Microsoft.Common.TextBox",
                         "label": "Machine prefix",
                         "defaultValue": "VM",
-                        "toolTip": "Prefix for the  machines name.",
+                        "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true
                         }
@@ -38,7 +38,7 @@
                         "name": "nodeVMAdminUsername",
                         "type": "Microsoft.Compute.UserNameTextBox",
                         "label": "Username",
-                        "toolTip": "Administrator username for the machines",
+                        "toolTip": "Administrator username for machine",
                         "osPlatform": "Linux",
                         "constraints": {
                             "required": true
