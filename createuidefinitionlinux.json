@@ -6,63 +6,10 @@
         ],
         "steps": [
             {
-                "name": "infraConfiguration",
-                "label": "Infrastructure Settings",
-                "subLabel": {
-                    "preValidation": "Configure the storage and VNET settings for the VMs",
-                    "postValidation": "Done"
-                },
-                "bladeTitle": "Infrastructure Settings",
-                "elements": [
-                    {
-                        "name": "storageAccount",
-                        "type": "Microsoft.Storage.StorageAccountSelector",
-                        "label": "Storage account",
-                        "toolTip": "Storage account used for the machines",
-                        "defaultValue": {
-                            "type": "Standard_LRS"
-                        }
-                    },
-                    {
-                        "name": "infavnet",
-                        "type": "Microsoft.Network.VirtualNetworkCombo",
-                        "label": {
-                            "virtualNetwork": "Virtual network",
-                            "subnets": "Subnets"
-                        },
-                        "toolTip": {
-                            "virtualNetwork": "Virtual network all resource required to be part of",
-                            "subnets": ""
-                        },
-                        "defaultValue": {
-                            "name": "InfaVNET",
-                            "addressPrefixSize": "/16"
-                        },
-                        "constraints": {
-                            "minAddressPrefixSize": "/29"
-                        },
-                        "subnets": {
-                            "subnet1": {
-                                "label": "Subnet",
-                                "defaultValue": {
-                                    "name": "InfaSubnet",
-                                    "addressPrefixSize": "/24"
-                                },
-                                "constraints": {
-                                    "minAddressPrefixSize": "/29",
-                                    "minAddressCount": 2,
-                                    "requireContiguousAddresses": true
-                                }
-                            }
-                        }
-                    }
-                ]
-            },
-            {
                 "name": "nodeVMConfiguration",
                 "label": "Node Settings",
                 "subLabel": {
-                    "preValidation": "Configure the machine settings for the node",
+                    "preValidation": "Configure machine settings for the node",
                     "postValidation": "Done"
                 },
                 "bladeTitle": "Node Settings",
@@ -141,24 +88,88 @@
                                 "Standard_D14"
                             ]
                         },
-                        "osPlatform": "Windows",
-                        "imageReference": {
-                            "publisher": "MicrosoftSQLServer",
-                            "offer": "SQL2014-WS2012R2",
-                            "sku": "Enterprise"
-                        },
+                        "osPlatform": "Linux",
                         "count": "[steps('nodeVMConfiguration').domainNodeCount]"
                     }
                 ]
             },
             {
-                "name": "databaseConfiguration",
-                "label": "Database settings",
+                "label": "Informatica Domain settings",
+                "name": "infaDomainConfiguration",
                 "subLabel": {
-                    "preValidation": "Configure the database settings",
+                    "preValidation": "Configure domain settings",
                     "postValidation": "Done"
                 },
-                "bladeTitle": "Database settings",
+                "bladeTitle": "Informatica Domain settings",
+                "elements": [
+                    {
+                        "name": "infaDomainName",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Informatica domain name",
+                        "defaultValue": "Azure_Domain",
+                        "toolTip": "Specify a name for the Domain",
+                        "constraints": {
+                            "required": true,
+                            "regex": "^[a-z0-9A-Z_]{1,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                        }
+                    },
+                    {
+                        "name": "infaDomainUser",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Informatica domain administrator name",
+                        "defaultValue": "Administrator",
+                        "toolTip": "Domain administrator user name",
+                        "constraints": {
+                            "required": true,
+                            "regex": "^[a-z0-9A-Z_]{1,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                        }
+                    },
+                    {
+                        "name": "infaDomainPassword",
+                        "type": "Microsoft.Common.PasswordBox",
+                        "label": {
+                            "password": "Informatica domain password",
+                            "confirmPassword": "Confirm Informatica domain password"
+                        },
+                        "constraints": {
+                            "required": true,
+                            "regex": "^.{4,}$",
+                            "validationMessage": "Password must at least 4 characters in length."
+                        },
+                        "options": {
+                            "hideConfirmation": false
+                        }
+
+                    },
+                    {
+                        "name": "infaDomainEncryptionKeyword",
+                        "type": "Microsoft.Common.PasswordBox",
+                        "toolTip": "Keyphrase for generating encryption key for domain",
+                        "label": {
+                            "password": "Keyphrase for encryption key",
+                            "confirmPassword": "Confirm keyphrase for encryption key"
+                        },
+                        "constraints": {
+                            "required": true,
+                            "regex": "^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d\\W])|(?=.*\\W)(?=.*\\d))|(?=.*\\W)(?=.*[A-Z])(?=.*\\d)).{8,72}$",
+                            "validationMessage": "Keyphrase must be at least 8 characters in length. Should contain at least one special, number, upper-case and lower-case character"
+                        },
+                        "options": {
+                            "hideConfirmation": true
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "databaseConfiguration",
+                "label": "Database Settings",
+                "subLabel": {
+                    "preValidation": "Configure database settings",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Database Settings",
                 "elements": [
                     {
                         "name": "databaseType",
@@ -189,8 +200,8 @@
                     {
                         "name": "databaseVMSize",
                         "type": "Microsoft.Compute.SizeSelector",
-                        "label": "Database  machine size",
-                        "toolTip": "The size of the machine for the repository database",
+                        "label": "Database machine size",
+                        "toolTip": "The size of machine for database",
                         "recommendedSizes": [
                             "Standard_D3",
                             "Standard_D4",
@@ -214,11 +225,6 @@
                             ]
                         },
                         "osPlatform": "Windows",
-                        "imageReference": {
-                            "publisher": "MicrosoftSQLServer",
-                            "offer": "SQL2014-WS2012R2",
-                            "sku": "Enterprise"
-                        },
                         "count": 1
                     },
                     {
@@ -252,7 +258,7 @@
                         "type": "Microsoft.Common.TextBox",
                         "label": "Informatica domain DB user",
                         "defaultValue": "",
-                        "toolTip": "Check Informatica 961HF3 commandline reference document.",
+                        "toolTip": "Database user to be created for communication between Domain and Domain database",
                         "constraints": {
                             "required": true,
                             "regex": "^[a-z0-9A-Z_]{1,30}$",
@@ -278,69 +284,54 @@
                 ]
             },
             {
-                "label": "Informatica Domain settings",
-                "name": "infaDomainConfiguration",
+                "name": "infraConfiguration",
+                "label": "Infrastructure Settings",
                 "subLabel": {
-                    "preValidation": "Configure the Informatica Domain settings",
+                    "preValidation": "Configure Storage and VNET settings",
                     "postValidation": "Done"
                 },
-                "bladeTitle": "Informatica Domain settings",
+                "bladeTitle": "Infrastructure Settings",
                 "elements": [
                     {
-                        "name": "infaDomainName",
-                        "type": "Microsoft.Common.TextBox",
-                        "label": "Informatica domain name",
-                        "defaultValue": "Azure_Domain",
-                        "toolTip": "Check Informatica 961HF3 commandline reference document",
-                        "constraints": {
-                            "required": true,
-                            "regex": "^[a-z0-9A-Z_]{1,30}$",
-                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                        "name": "storageAccount",
+                        "type": "Microsoft.Storage.StorageAccountSelector",
+                        "label": "Storage account",
+                        "toolTip": "Storage account used for the machines",
+                        "defaultValue": {
+                            "type": "Standard_LRS"
                         }
                     },
                     {
-                        "name": "infaDomainUser",
-                        "type": "Microsoft.Common.TextBox",
-                        "label": "Informatica domain user",
-                        "defaultValue": "Administrator",
-                        "toolTip": "Check Informatica 961HF3 commandline reference document",
-                        "constraints": {
-                            "required": true,
-                            "regex": "^[a-z0-9A-Z_]{1,30}$",
-                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
-                        }
-                    },
-                    {
-                        "name": "infaDomainPassword",
-                        "type": "Microsoft.Common.PasswordBox",
+                        "name": "infavnet",
+                        "type": "Microsoft.Network.VirtualNetworkCombo",
                         "label": {
-                            "password": "Informatica domain password",
-                            "confirmPassword": "Confirm Informatica domain password"
+                            "virtualNetwork": "Virtual network",
+                            "subnets": "Subnets"
+                        },
+                        "toolTip": {
+                            "virtualNetwork": "Virtual network all resource required to be part of",
+                            "subnets": ""
+                        },
+                        "defaultValue": {
+                            "name": "InfaVNET",
+                            "addressPrefixSize": "/16"
                         },
                         "constraints": {
-                            "required": true,
-                            "regex": "^.{4,}$",
-                            "validationMessage": "Password must at least 4 characters in length."
+                            "minAddressPrefixSize": "/29"
                         },
-                        "options": {
-                            "hideConfirmation": false
-                        }
-
-                    },
-                    {
-                        "name": "infaDomainEncryptionKeyword",
-                        "type": "Microsoft.Common.PasswordBox",
-                        "label": {
-                            "password": "Keyphrase for encryption for domain",
-                            "confirmPassword": "Confirm keyphrase for encryption for domain"
-                        },
-                        "constraints": {
-                            "required": true,
-                            "regex": "^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d\\W])|(?=.*\\W)(?=.*\\d))|(?=.*\\W)(?=.*[A-Z])(?=.*\\d)).{8,72}$",
-                            "validationMessage": "Keyphrase must be at least 8 characters in length. Should contain at least one special, number, upper-case and lower-case character"
-                        },
-                        "options": {
-                            "hideConfirmation": true
+                        "subnets": {
+                            "subnet1": {
+                                "label": "Subnet",
+                                "defaultValue": {
+                                    "name": "InfaSubnet",
+                                    "addressPrefixSize": "/24"
+                                },
+                                "constraints": {
+                                    "minAddressPrefixSize": "/29",
+                                    "minAddressCount": 2,
+                                    "requireContiguousAddresses": true
+                                }
+                            }
                         }
                     }
                 ]
@@ -349,14 +340,6 @@
 
         "outputs": {
             "location": "[location()]",
-            "storageName": "[steps('infraConfiguration').storageAccount.name]",
-            "storageType": "[steps('infraConfiguration').storageAccount.type]",
-            "storageExistingOrNew": "[steps('infraConfiguration').storageAccount.newOrExisting]",
-            "vnetName": "[steps('infraConfiguration').infavnet.name]",
-            "vnetAddressPrefix": "[steps('infraConfiguration').infavnet.addressPrefix]",
-            "vnetExistingOrNew": "[steps('infraConfiguration').infavnet.newOrExisting]",
-            "subnetName": "[steps('infraConfiguration').infavnet.subnets.subnet1.name]",
-            "subnetPrefix": "[steps('infraConfiguration').infavnet.subnets.subnet1.addressPrefix]",
             "VMCount": "[steps('nodeVMConfiguration').domainNodeCount]",
             "VMNamePrefix": "[steps('nodeVMConfiguration').nodeVMPrefix]",
             "VMAdminUserName": "[steps('nodeVMConfiguration').nodeVMAdminUsername]",
@@ -364,6 +347,10 @@
             "VMAdminPassword": "[steps('nodeVMConfiguration').nodeVMAdminPassword.password]",
             "VMAdminSshPublicKey": "[steps('nodeVMConfiguration').nodeVMAdminPassword.sshPublicKey]",
             "NodeVMSize": "[steps('nodeVMConfiguration').nodeVMSize]",
+            "InfaDomainName": "[steps('infaDomainConfiguration').infaDomainName]",
+            "InfaDomainUser": "[steps('infaDomainConfiguration').infaDomainUser]",
+            "InfaDomainPassword": "[steps('infaDomainConfiguration').infaDomainPassword]",
+            "InfaKeyWord": "[steps('infaDomainConfiguration').infaDomainEncryptionKeyword]",
             "VM01Name": "[steps('databaseConfiguration').databaseName]",
             "DBVMSize": "[steps('databaseConfiguration').databaseVMSize]",
             "databaseType": "[steps('databaseConfiguration').databaseType]",
@@ -371,10 +358,14 @@
             "VM01AdminPassword": "[steps('databaseConfiguration').dbVMAdminPassword.password]",
             "DBUser": "[steps('databaseConfiguration').infaDomainDBUser]",
             "DBPassword": "[steps('databaseConfiguration').infaDomainDBPassword]",
-            "InfaDomainName": "[steps('infaDomainConfiguration').infaDomainName]",
-            "InfaDomainUser": "[steps('infaDomainConfiguration').infaDomainUser]",
-            "InfaDomainPassword": "[steps('infaDomainConfiguration').infaDomainPassword]",
-            "InfaKeyWord": "[steps('infaDomainConfiguration').infaDomainEncryptionKeyword]"
+            "storageName": "[steps('infraConfiguration').storageAccount.name]",
+            "storageType": "[steps('infraConfiguration').storageAccount.type]",
+            "storageExistingOrNew": "[steps('infraConfiguration').storageAccount.newOrExisting]",
+            "vnetName": "[steps('infraConfiguration').infavnet.name]",
+            "vnetAddressPrefix": "[steps('infraConfiguration').infavnet.addressPrefix]",
+            "vnetExistingOrNew": "[steps('infraConfiguration').infavnet.newOrExisting]",
+            "subnetName": "[steps('infraConfiguration').infavnet.subnets.subnet1.name]",
+            "subnetPrefix": "[steps('infraConfiguration').infavnet.subnets.subnet1.addressPrefix]"
         }
     }
 }
