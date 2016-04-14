@@ -190,6 +190,14 @@
             "metadata": {
                 "description": "Informatica domain encryption key keyphrase"
             }
+        },
+        "baseUrl": { 
+            "type": "string",
+            "metadata": {
+                "description": "Base URL for Marketplace", 
+                "artifactsBaseUrl": "" 
+            },
+            "defaultValue": "https://raw.githubusercontent.com/vijayanand17/Templates/master/" 
         }
     },
     "variables": {
