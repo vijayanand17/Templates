@@ -59,6 +59,9 @@
         "InfaKeyWord": {
             "type": "securestring",
             "minLength": 4
+        },
+        "baseUrl": {
+            "type": "string"
         }
     },
     "variables": {
@@ -67,7 +70,7 @@
         "VMNicNamePrefix": "[concat(parameters('VMNamePrefix'),'Nic')]",
         "VMSubnetRef": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/', parameters('subnetName'))]",
 
-        "ExtScriptURI": "https://raw.githubusercontent.com/vijayanand17/infascripts/master/",
+        "ExtScriptURI": "[parameters('baseUrl')]",
         "ExtWIScriptFile": "wininfainstaller.ps1",
 
         "InfaNode1Port": 6005,

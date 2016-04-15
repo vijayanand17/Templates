@@ -310,6 +310,9 @@
                     },
                     "SubnetName": {
                         "value": "[parameters('subnetName')]"
+                    },
+                    "baseUrl": { 
+                        "value": "[parameters('baseUrl')]"
                     }
                 }
             }
@@ -378,6 +381,9 @@
                     },
                     "InfaKeyWord": {
                         "value": "[parameters('InfaKeyWord')]"
+                    },
+                    "baseUrl": { 
+                        "value": "[parameters('baseUrl')]"
                     }
                 }
             }
