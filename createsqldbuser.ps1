@@ -53,8 +53,11 @@ function executeSQLStatement {
     }
 
     if($errorFlag -eq 0 -And $tryCount -eq 3) {
-        exit 255
-    }
+        writeLog "User creation failed"
+		exit 255
+    } else {
+		writeLog "User creation passed"
+	}
 }
 
 $error.clear()
