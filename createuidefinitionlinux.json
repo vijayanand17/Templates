@@ -71,23 +71,6 @@
                             "Standard_D11",
                             "Standard_D2"
                         ],
-                        "constraints": {
-                            "allowedSizes": [
-                                "Standard_A1",
-                                "Standard_A2",
-                                "Standard_A3",
-                                "Standard_A4",
-                                "Standard_A11",
-                                "Standard_D1",
-                                "Standard_D2",
-                                "Standard_D3",
-                                "Standard_D4",
-                                "Standard_D11",
-                                "Standard_D12",
-                                "Standard_D13",
-                                "Standard_D14"
-                            ]
-                        },
                         "osPlatform": "Linux",
                         "count": "[steps('nodeVMConfiguration').domainNodeCount]"
                     }
@@ -207,23 +190,6 @@
                             "Standard_D4",
                             "Standard_D5"
                         ],
-                        "constraints": {
-                            "allowedSizes": [
-                                "Standard_A1",
-                                "Standard_A2",
-                                "Standard_A3",
-                                "Standard_A4",
-                                "Standard_A11",
-                                "Standard_D1",
-                                "Standard_D2",
-                                "Standard_D3",
-                                "Standard_D4",
-                                "Standard_D11",
-                                "Standard_D12",
-                                "Standard_D13",
-                                "Standard_D14"
-                            ]
-                        },
                         "osPlatform": "Windows",
                         "count": 1
                     },
