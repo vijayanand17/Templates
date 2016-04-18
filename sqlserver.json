@@ -38,7 +38,7 @@
         "VM01NicName": "[concat(parameters('VM01Name'), 'Nic')]",
         "dbOsType": "windows",
 
-        "ExtScriptURI": "[parameters('baseUrl')]",
+        "ExtScriptURI": "[concat(parameters('baseUrl'), '/')]",
         "ExtCDBScriptFile": "createsqldbuser.ps1",
 
         "InfaCustomVMDisk1": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), '.SQLServer2014.osdisk.vhd')]",
@@ -159,7 +159,7 @@
                     "properties": {
                         "publisher": "Microsoft.Compute",
                         "type": "CustomScriptExtension",
-                        "typeHandlerVersion": "1.2",
+                        "typeHandlerVersion": "1.8",
                         "autoUpgradeMinorVersion": true,
                         "settings": {
                             "fileUris": [

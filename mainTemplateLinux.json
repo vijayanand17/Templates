@@ -209,13 +209,13 @@
             "type": "string",
             "metadata": {
                 "description": "Base URL for Marketplace",
-                "artifactsBaseUrl": "https://raw.githubusercontent.com/vijayanand17/Templates/master/"
+                "artifactsBaseUrl": "https://raw.githubusercontent.com/vijayanand17/Templates/master"
             },
-            "defaultValue": "https://raw.githubusercontent.com/vijayanand17/Templates/master/"
+            "defaultValue": "https://raw.githubusercontent.com/vijayanand17/Templates/master"
         }
     },
     "variables": {
-        "baseuri": "[parameters('baseUrl')]",
+        "baseuri": "[concat(parameters('baseUrl'), '/')]",
 
         "storageUri": "[concat(variables('baseuri'), 'storage', parameters('storageExistingOrNew'),'.json')]",
         "vnetUri": "[concat(variables('baseuri'), 'vnet', parameters('vnetExistingOrNew'),'.json')]",
@@ -327,7 +327,7 @@
                         "value": "[parameters('subnetName')]"
                     },
                     "baseUrl": { 
-                        "value": "[parameters('baseUrl')]"
+                        "value": "[variables('baseuri')]"
                     }
                 }
             }
@@ -401,7 +401,7 @@
                         "value": "[parameters('InfaKeyWord')]"
                     },
                     "baseUrl": { 
-                        "value": "[parameters('baseUrl')]"
+                        "value": "[variables('baseuri')]"
                     }
                 }
             }
