@@ -56,7 +56,7 @@ function executeSQLStatement {
         writeLog "User creation failed"
 		exit 255
     } else {
-		writeLog "User creation passed"
+		writeLog "Statement execution passed"
 	}
 }
 
