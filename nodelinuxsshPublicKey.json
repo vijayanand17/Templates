@@ -209,7 +209,7 @@
                     "properties": {
                         "publisher": "Microsoft.OSTCExtensions",
                         "type": "CustomScriptForLinux",
-                        "typeHandlerVersion": "1.8",
+                        "typeHandlerVersion": "1.7",
                         "autoUpgradeMinorVersion": true,
                         "settings": {
                             "fileUris": [
