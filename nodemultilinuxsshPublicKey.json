@@ -208,7 +208,7 @@
                     "properties": {
                         "publisher": "Microsoft.OSTCExtensions",
                         "type": "CustomScriptForLinux",
-                        "typeHandlerVersion": "1.7",
+                        "typeHandlerVersion": "1.4",
                         "autoUpgradeMinorVersion": true,
                         "settings": {
                             "fileUris": [
@@ -353,7 +353,7 @@
                     "properties": {
                         "publisher": "Microsoft.OSTCExtensions",
                         "type": "CustomScriptForLinux",
-                        "typeHandlerVersion": "1.7",
+                        "typeHandlerVersion": "1.4",
                         "autoUpgradeMinorVersion": true,
                         "settings": {
                             "fileUris": [
