@@ -36,23 +36,25 @@ function waitTillDatabaseIsAlive {
 function executeSQLStatement {
     Param([String] $sqlStatement)
 
-    $errorFlag = 0
+    $errorFlag = 1
     $tryCount = 0
 
-    while($errorFlag -eq 0 -And $tryCount -lt 3) {
+    while($errorFlag -ne 0 -And $tryCount -lt 3) {
+        waitTillDatabaseIsAlive
         $tryCount++
         try {
-            Invoke-Sqlcmd -ServerInstance '(local)' -Database 'Model' -Query $sqlStatement
-            $errorFlag = 1
+            writeLog "Error: $error"
+            $error.clear()
+            Invoke-Sqlcmd -ServerInstance '(local)' -Database 'model' -Query $sqlStatement
+            $errorFlag = $error.Count
         } catch {
-            writeLog "Attempt $tryCount"
-            writeLog "Error when running sql $sqlStatement"
             writeLog "Exception: $error"
+            $errorFlag = $error.Count
             $error.clear()
         }
     }
 
-    if($errorFlag -eq 0 -And $tryCount -eq 3) {
+    if($errorFlag -eq 1 -And $tryCount -eq 3) {
         writeLog "User creation failed"
 		exit 255
     } else {
