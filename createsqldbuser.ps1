@@ -39,7 +39,7 @@ function executeSQLStatement {
     $errorFlag = 1
     $tryCount = 0
 
-    while($errorFlag -ne 0 -And $tryCount -lt 3) {
+    while($errorFlag -ne 0 -And $tryCount -lt 30) {
         waitTillDatabaseIsAlive
         $tryCount++
         try {
