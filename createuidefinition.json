@@ -34,7 +34,8 @@
                         "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^([A-Za-z])([A-Za-z0-9\-]{1,28})$"
+                            "regex": "^[1-9]([0-9]?)$",
+                            "validationMessage": "Only postive numbers are allowed"
                         }
                     },
                     {
