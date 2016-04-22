@@ -34,7 +34,7 @@
                         "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^[A-Za-z][A-Za-z0-9\-]{1,28}$",
+                            "regex": "^[A-Za-z]([A-Za-z0-9\-]{1,28})$",
                             "validationMessage": "Host prefix should begin with alphabets, and contain only alphabets, numbers or hyphen. Should not contain more than 29 characters"
                         }
                     },
