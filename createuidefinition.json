@@ -33,7 +33,9 @@
                         "defaultValue": "VM",
                         "toolTip": "Prefix for machine name",
                         "constraints": {
-                            "required": true
+                            "required": true,
+                            "regex": "^[A-Za-z]([A-Za-z0-9\-]*)$",
+                            "validationMessage": "Host prefix should begin with alphabets, and contain only alphabets, numbers or hyphen"
                         }
                     },
                     {
