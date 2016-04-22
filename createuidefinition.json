@@ -22,7 +22,8 @@
                         "toolTip": "",
                         "constraints": {
                             "required": true,
-                            "regex": "^[1-9]([0-9]*){1,2}$"
+                            "regex": "^[1-9]([0-9]?)$",
+                            "validationMessage": "Only postive numbers are allowed"
                         }
                     },
                     {
@@ -33,7 +34,8 @@
                         "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true,
-                            "regex": ""
+                            "regex": "^(?=.{1,252}$)[A-Za-z](?:(?:[0-9A-Za-z]|-){0,61}[0-9A-Za-z])?(?:\.[0-9A-Za-z](?:(?:[0-9A-Za-z]|-){0,61}[0-9A-Za-z])?)*?$",
+                            "validationMessage": "Host prefix should begin with alphabets, and contain only alphabets, numbers, . and -"
                         }
                     },
                     {
@@ -136,7 +138,7 @@
                         "constraints": {
                             "required": true,
                             "regex": "^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d\\W])|(?=.*\\W)(?=.*\\d))|(?=.*\\W)(?=.*[A-Z])(?=.*\\d)).{8,72}$",
-                            "validationMessage": "Keyphrase must be at least 8 characters in length. Should contain at least one special, number, upper-case and lower-case character"
+                            "validationMessage": "Keyphrase must be at least 8 characters in length. Should contain at least one special character, number, upper-case and lower-case character"
                         },
                         "options": {
                             "hideConfirmation": true
@@ -240,7 +242,7 @@
                         "constraints": {
                             "required": true,
                             "regex": "^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d\\W])|(?=.*\\W)(?=.*\\d))|(?=.*\\W)(?=.*[A-Z])(?=.*\\d)).{5,72}$",
-                            "validationMessage": "Password must be at least 5 characters in length. Should contain at least one special, number, upper-case and lower-case character"
+                            "validationMessage": "Password must be at least 5 characters in length. Should contain at least one special character, number, upper-case and lower-case character"
                         },
                         "options": {
                             "hideConfirmation": false
