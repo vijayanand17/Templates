@@ -22,7 +22,7 @@
                         "toolTip": "",
                         "constraints": {
                             "required": true,
-                            "regex": "^[1-9]([0-9]{1,2}$)"
+                            "regex": ""
                         }
                     },
                     {
@@ -33,7 +33,7 @@
                         "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "" // ^(?=.{1,252}$)[A-Za-z](?:(?:[0-9A-Za-z]|-){0,61}[0-9A-Za-z])?(?:\.[0-9A-Za-z](?:(?:[0-9A-Za-z]|-){0,61}[0-9A-Za-z])?)*?$
+                            "regex": ""
                         }
                     },
                     {
