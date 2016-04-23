@@ -23,7 +23,7 @@
                         "constraints": {
                             "required": true,
                             "regex": "^[1-9]([0-9]?)$",
-                            "validationMessage": "Only postive numbers are allowed"
+                            "validationMessage": "Only postive numbers are allowed. Maximum of two digits number is allowed"
                         }
                     },
                     {
@@ -34,8 +34,8 @@
                         "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-]{1,29})$",
-                            "validationMessage": "Host prefix should begin with alphabets, and contain only alphabets, numbers or hyphen. Should not contain more than 29 characters"
+                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{1,29})$",
+                            "validationMessage": "Host prefix should begin with alphabets. Only alphanumeric characters, hyphen and dot are allowed. The value must be 1-29 characters long"
                         }
                     },
                     {
@@ -95,7 +95,7 @@
                         "constraints": {
                             "required": true,
                             "regex": "^[a-z0-9A-Z_]{1,30}$",
-                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed. The value must be 1-30"
                         }
                     },
                     {
@@ -107,7 +107,7 @@
                         "constraints": {
                             "required": true,
                             "regex": "^[a-z0-9A-Z_]{1,30}$",
-                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed. The value must be 1-30"
                         }
                     },
                     {
@@ -176,8 +176,8 @@
                         "label": "Database machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-]{1,30})$",
-                            "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be 1-30 characters long"
+                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{1,30})$",
+                            "validationMessage": "Only alphanumeric characters, hyphen and dot are allowed. The value must be 1-30 characters long"
                         },
                         "options": { }
                     },
