@@ -34,7 +34,7 @@
                         "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{2,29})$",
+                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{1,29})$",
                             "validationMessage": "Host prefix should begin with alphabets. Only alphanumeric characters, hyphen and dot are allowed. The value must be 2-29 characters long"
                         }
                     },
@@ -94,7 +94,7 @@
                         "toolTip": "Specify a name for the Domain",
                         "constraints": {
                             "required": true,
-                            "regex": "^[a-z0-9A-Z_]{3,30}$",
+                            "regex": "^[a-z0-9A-Z_]{2,30}$",
                             "validationMessage": "Only alphanumeric characters and underscore are allowed. The value must be 3-30"
                         }
                     },
