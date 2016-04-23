@@ -325,9 +325,11 @@
             "storageName": "[steps('infraConfiguration').storageAccount.name]",
             "storageType": "[steps('infraConfiguration').storageAccount.type]",
             "storageExistingOrNew": "[steps('infraConfiguration').storageAccount.newOrExisting]",
+            "existingStorageRG": "[steps('infraConfiguration').storageAccount.resourceGroup]",
             "vnetName": "[steps('infraConfiguration').infavnet.name]",
             "vnetAddressPrefix": "[steps('infraConfiguration').infavnet.addressPrefix]",
             "vnetExistingOrNew": "[steps('infraConfiguration').infavnet.newOrExisting]",
+            "existingVnetRG": "[steps('infraConfiguration').infavnet.resourceGroup]",
             "subnetName": "[steps('infraConfiguration').infavnet.subnets.subnet1.name]",
             "subnetPrefix": "[steps('infraConfiguration').infavnet.subnets.subnet1.addressPrefix]"
         }

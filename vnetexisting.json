@@ -2,6 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location": {
+            "type": "string"
+        },
         "vnetName": {
             "type": "string"
         },
@@ -11,7 +14,10 @@
         "subnetName": {
             "type": "string"
         },
-        "subnetPrefix": { 
+        "subnetPrefix": {
+            "type": "string"
+        },
+        "existingVnetRG": {
             "type": "string"
         }
     },
@@ -21,7 +27,7 @@
     ],
     "outputs": {
         "vnetId": {
-            "value": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+            "value": "[resourceId(parameters('existingVnetRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
             "type": "string"
         }
     }

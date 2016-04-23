@@ -2,6 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location": {
+            "type": "string"
+        },
         "vnetName": {
             "type": "string"
         },
@@ -13,6 +16,9 @@
         },
         "subnetPrefix": {
             "type": "string"
+        },
+        "existingVnetRG": {
+            "type": "string"
         }
     },
     "variables": {
@@ -23,7 +29,7 @@
             "apiVersion": "2015-06-15",
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('NetworkSecurityGroupName')]",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "tags": {
                 "displayName": "NetworkSecurityGroup"
             },
@@ -49,7 +55,7 @@
         {
             "name": "[parameters('vnetName')]",
             "type": "Microsoft.Network/virtualNetworks",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkSecurityGroups/', variables('NetworkSecurityGroupName'))]"

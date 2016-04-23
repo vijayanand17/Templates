@@ -2,6 +2,9 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location": {
+            "type": "string"
+        },
         "storageName": {
             "type": "string"
         },
@@ -92,7 +95,7 @@
         {
             "name": "[concat(variables('VMPublicDNSName'), '1')]",
             "type": "Microsoft.Network/publicIPAddresses",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [ ],
 
@@ -109,7 +112,7 @@
         {
             "name": "[concat(variables('VMNicNamePrefix'), '1')]",
             "type": "Microsoft.Network/networkInterfaces",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('VMPublicDNSName'), '1')]"
@@ -137,7 +140,7 @@
         {
             "name": "[concat(parameters('VMNamePrefix'), '1')]",
             "type": "Microsoft.Compute/virtualMachines",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VMNicNamePrefix'), '1')]"
@@ -197,7 +200,7 @@
                 {
                     "name": "ScriptExtGVM",
                     "type": "extensions",
-                    "location": "[resourceGroup().location]",
+                    "location": "[parameters('location')]",
                     "apiVersion": "2015-06-15",
                     "dependsOn": [
                         "[concat('Microsoft.Compute/virtualMachines/', parameters('VMNamePrefix'), '1')]"
@@ -216,7 +219,7 @@
                             ]
                         },
                         "protectedSettings": {
-                            "commandToExecute": "[concat('sh ', variables('ExtWIScriptFile'), ' ', concat(parameters('VMNamePrefix'), '1'), ' ', parameters('InfaDomainName'), ' ', parameters('InfaDomainUser'), ' ', parameters('InfaDomainPassword'), ' ', parameters('InfaNodeNamePrefix'), '1', ' ', variables('InfaNode1Port'), ' ', variables('InfaDBType'), ' ', variables('InfaDBName'), ' ', parameters('DBUser'), ' ', parameters('DBPassword'), ' ', parameters('VM01Name'), ' ', variables('InfaDBPort'), ' ', parameters('InfaKeyWord'), ' 0 ', parameters('VMAdminUserName'), ' ', parameters('storageName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2015-05-01-preview').key1)]"
+                            "commandToExecute": "[concat('sh ', variables('ExtWIScriptFile'), ' ', concat(parameters('VMNamePrefix'), '1'), ' ', parameters('InfaDomainName'), ' ', parameters('InfaDomainUser'), ' ', parameters('InfaDomainPassword'), ' ', parameters('InfaNodeNamePrefix'), '1', ' ', variables('InfaNode1Port'), ' ', variables('InfaDBType'), ' ', variables('InfaDBName'), ' ', parameters('DBUser'), ' ', parameters('DBPassword'), ' ', parameters('VM01Name'), ' ', variables('InfaDBPort'), ' ', parameters('InfaKeyWord'), ' 0 ', parameters('VMAdminUserName'), ' ', parameters('storageName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2016-01-01').keys[0].value)]"
                         }
                     }
                 }
@@ -225,7 +228,7 @@
         {
             "name": "[concat(variables('VMPublicDNSName'), add(copyIndex(), 2))]",
             "type": "Microsoft.Network/publicIPAddresses",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [ ],
             "copy": {
@@ -245,7 +248,7 @@
         {
             "name": "[concat(variables('VMNicNamePrefix'), add(copyIndex(), 2))]",
             "type": "Microsoft.Network/networkInterfaces",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('VMPublicDNSName'), add(copyIndex(), 2))]"
@@ -277,7 +280,7 @@
         {
             "name": "[concat(parameters('VMNamePrefix'), add(copyIndex(), 2))]",
             "type": "Microsoft.Compute/virtualMachines",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VMNicNamePrefix'), add(copyIndex(), 2))]",
@@ -342,7 +345,7 @@
                 {
                     "name": "ScriptExtGVM",
                     "type": "extensions",
-                    "location": "[resourceGroup().location]",
+                    "location": "[parameters('location')]",
                     "apiVersion": "2015-06-15",
                     "dependsOn": [
                         "[concat('Microsoft.Compute/virtualMachines/', parameters('VMNamePrefix'), add(copyIndex(), 2))]"
@@ -361,7 +364,7 @@
                             ]
                         },
                         "protectedSettings": {
-                            "commandToExecute": "[concat('sh ', variables('ExtWIScriptFile'), ' ', concat(parameters('VMNamePrefix'), '1'), ' ', parameters('InfaDomainName'), ' ', parameters('InfaDomainUser'), ' ', parameters('InfaDomainPassword'), ' ', parameters('InfaNodeNamePrefix'), add(copyIndex(), 2), ' ', variables('InfaNode1Port'), ' ', variables('InfaDBType'), ' ', variables('InfaDBName'), ' ', parameters('DBUser'), ' ', parameters('DBPassword'), ' ', parameters('VM01Name'), ' ', variables('InfaDBPort'), ' ', parameters('InfaKeyWord'), ' 1 ', parameters('VMAdminUserName'), ' ', parameters('storageName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2015-05-01-preview').key1)]"
+                            "commandToExecute": "[concat('sh ', variables('ExtWIScriptFile'), ' ', concat(parameters('VMNamePrefix'), '1'), ' ', parameters('InfaDomainName'), ' ', parameters('InfaDomainUser'), ' ', parameters('InfaDomainPassword'), ' ', parameters('InfaNodeNamePrefix'), add(copyIndex(), 2), ' ', variables('InfaNode1Port'), ' ', variables('InfaDBType'), ' ', variables('InfaDBName'), ' ', parameters('DBUser'), ' ', parameters('DBPassword'), ' ', parameters('VM01Name'), ' ', variables('InfaDBPort'), ' ', parameters('InfaKeyWord'), ' 1 ', parameters('VMAdminUserName'), ' ', parameters('storageName'), ' ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2016-01-01').keys[0].value)]"
                         }
                     }
                 }

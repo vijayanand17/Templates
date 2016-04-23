@@ -16,6 +16,13 @@
                 "description": "Storage new or existing"
             }
         },
+        "existingStorageRG": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Existing storage resource group name"
+            }
+        },
         "storageName": {
             "type": "string",
             "defaultValue": "infastorage",
@@ -39,6 +46,13 @@
             "defaultValue": "new",
             "metadata": {
                 "description": "VNET new or existing"
+            }
+        },
+        "existingVnetRG": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": { 
+                "description": "Existing VNET resource group name"
             }
         },
         "vnetName": {
@@ -246,11 +260,17 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
                     "storageName": {
                         "value": "[parameters('storageName')]"
                     },
                     "storageType": {
                         "value": "[parameters('storageType')]"
+                    },
+                    "existingStorageRG": {
+                        "value": "[parameters('existingStorageRG')]"
                     }
                 }
             }
@@ -269,6 +289,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
                     "vnetName": {
                         "value": "[parameters('vnetName')]"
                     },
@@ -280,6 +303,9 @@
                     },
                     "subnetPrefix": {
                         "value": "[parameters('subnetPrefix')]"
+                    },
+                    "existingVnetRG": {
+                        "value": "[parameters('existingVnetRG')]"
                     }
                 }
             }
@@ -299,6 +325,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
                     "storageName": {
                         "value": "[parameters('storageName')]"
                     },
@@ -346,6 +375,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "location": { 
+                        "value": "[parameters('location')]"
+                    },
                     "storageName": {
                         "value": "[parameters('storageName')]"
                     },

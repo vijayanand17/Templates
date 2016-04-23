@@ -2,6 +2,9 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location": {
+            "type": "string"
+        },
         "storageName": {
             "type": "string"
         },
@@ -86,7 +89,7 @@
         {
             "name": "[variables('VMPublicDNSName')]",
             "type": "Microsoft.Network/publicIPAddresses",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [ ],
 
@@ -103,7 +106,7 @@
         {
             "name": "[concat(variables('VMNicNamePrefix'), add(variables('Index'), 1))]",
             "type": "Microsoft.Network/networkInterfaces",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', variables('VMPublicDNSName'))]"
@@ -131,7 +134,7 @@
         {
             "name": "[concat(parameters('VMNamePrefix'), add(variables('Index'), 1))]",
             "type": "Microsoft.Compute/virtualMachines",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VMNicNamePrefix'), add(variables('Index'), 1))]"
@@ -181,7 +184,7 @@
                 {
                     "name": "ScriptExtGVM",
                     "type": "extensions",
-                    "location": "[resourceGroup().location]",
+                    "location": "[parameters('location')]",
                     "apiVersion": "2015-06-15",
                     "dependsOn": [
                         "[concat('Microsoft.Compute/virtualMachines/', parameters('VMNamePrefix'), add(variables('Index'), 1))]"
@@ -200,7 +203,7 @@
                             ]
                         },
                         "protectedSettings": {
-                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', variables('ExtWIScriptFile'), ' -domainHost ', concat(parameters('VMNamePrefix'), '1'), ' -domainName ', parameters('InfaDomainName'), ' -domainUser ', parameters('InfaDomainUser'), ' -domainPassword ', parameters('InfaDomainPassword'), ' -nodeName ', parameters('InfaNodeNamePrefix'), add(variables('Index'), 1), ' -nodePort ', variables('InfaNode1Port'), ' -dbType ', variables('InfaDBType'), ' -dbName ', variables('InfaDBName'), ' -dbUser ', parameters('DBUser'), ' -dbPassword ', parameters('DBPassword'), ' -dbHost ', parameters('VM01Name'), ' -dbPort ', variables('InfaDBPort'), ' -sitekeyKeyword ', parameters('InfaKeyWord'), ' -joinDomain ', variables('Index'), ' -osUserName ', parameters('VMAdminUserName'), ' -storageName ', parameters('storageName'), ' -storageKey ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2016-01-01').keys[0])]"
+                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -file ', variables('ExtWIScriptFile'), ' -domainHost ', concat(parameters('VMNamePrefix'), '1'), ' -domainName ', parameters('InfaDomainName'), ' -domainUser ', parameters('InfaDomainUser'), ' -domainPassword ', parameters('InfaDomainPassword'), ' -nodeName ', parameters('InfaNodeNamePrefix'), add(variables('Index'), 1), ' -nodePort ', variables('InfaNode1Port'), ' -dbType ', variables('InfaDBType'), ' -dbName ', variables('InfaDBName'), ' -dbUser ', parameters('DBUser'), ' -dbPassword ', parameters('DBPassword'), ' -dbHost ', parameters('VM01Name'), ' -dbPort ', variables('InfaDBPort'), ' -sitekeyKeyword ', parameters('InfaKeyWord'), ' -joinDomain ', variables('Index'), ' -osUserName ', parameters('VMAdminUserName'), ' -storageName ', parameters('storageName'), ' -storageKey ', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageName')), '2016-01-01').keys[0].value)]"
                         }
                     }
                 }

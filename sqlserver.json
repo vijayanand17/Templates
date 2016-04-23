@@ -2,6 +2,9 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location": {
+            "type": "string"
+        },
         "storageName": {
             "type": "string"
         },
@@ -54,7 +57,7 @@
         {
             "name": "[parameters('VM01Name')]",
             "type": "Microsoft.Network/publicIPAddresses",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [ ],
             "tags": {
@@ -70,7 +73,7 @@
         {
             "name": "[variables('VM01NicName')]",
             "type": "Microsoft.Network/networkInterfaces",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', parameters('VM01Name'))]"
@@ -98,7 +101,7 @@
         {
             "name": "[parameters('VM01Name')]",
             "type": "Microsoft.Compute/virtualMachines",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VM01NicName'))]"
@@ -148,7 +151,7 @@
                 {
                     "name": "ScriptExtDB",
                     "type": "extensions",
-                    "location": "[resourceGroup().location]",
+                    "location": "[parameters('location')]",
                     "apiVersion": "2015-06-15",
                     "dependsOn": [
                         "[concat('Microsoft.Compute/virtualMachines/', parameters('VM01Name'))]"

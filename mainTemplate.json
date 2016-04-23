@@ -16,6 +16,13 @@
                 "description": "Storage new or existing"
             }
         },
+        "existingStorageRG": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Existing storage resource group name"
+            }
+        },
         "storageName": {
             "type": "string",
             "defaultValue": "infastorage",
@@ -39,6 +46,13 @@
             "defaultValue": "new",
             "metadata": {
                 "description": "VNET new or existing"
+            }
+        },
+        "existingVnetRG": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": { 
+                "description": "Existing VNET resource group name"
             }
         },
         "vnetName": {
@@ -191,13 +205,13 @@
                 "description": "Informatica domain encryption key keyphrase"
             }
         },
-        "baseUrl": { 
+        "baseUrl": {
             "type": "string",
             "metadata": {
-                "description": "Base URL for Marketplace", 
-                "artifactsBaseUrl": "https://raw.githubusercontent.com/vijayanand17/Templates/master" 
+                "description": "Base URL for Marketplace",
+                "artifactsBaseUrl": "https://raw.githubusercontent.com/vijayanand17/Templates/master"
             },
-            "defaultValue": "https://raw.githubusercontent.com/vijayanand17/Templates/master" 
+            "defaultValue": "https://raw.githubusercontent.com/vijayanand17/Templates/master"
         }
     },
     "variables": {
@@ -231,11 +245,17 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
                     "storageName": {
                         "value": "[parameters('storageName')]"
                     },
                     "storageType": {
                         "value": "[parameters('storageType')]"
+                    },
+                    "existingStorageRG": {
+                        "value": "[parameters('existingStorageRG')]"
                     }
                 }
             }
@@ -254,6 +274,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
                     "vnetName": {
                         "value": "[parameters('vnetName')]"
                     },
@@ -265,6 +288,9 @@
                     },
                     "subnetPrefix": {
                         "value": "[parameters('subnetPrefix')]"
+                    },
+                    "existingVnetRG": {
+                        "value": "[parameters('existingVnetRG')]"
                     }
                 }
             }
@@ -284,6 +310,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
                     "storageName": {
                         "value": "[parameters('storageName')]"
                     },
@@ -311,7 +340,7 @@
                     "SubnetName": {
                         "value": "[parameters('subnetName')]"
                     },
-                    "baseUrl": { 
+                    "baseUrl": {
                         "value": "[variables('baseuri')]"
                     }
                 }
@@ -331,6 +360,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "location": { 
+                        "value": "[parameters('location')]"
+                    },
                     "storageName": {
                         "value": "[parameters('storageName')]"
                     },
@@ -382,7 +414,7 @@
                     "InfaKeyWord": {
                         "value": "[parameters('InfaKeyWord')]"
                     },
-                    "baseUrl": { 
+                    "baseUrl": {
                         "value": "[variables('baseuri')]"
                     }
                 }
