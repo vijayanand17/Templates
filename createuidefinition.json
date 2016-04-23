@@ -34,8 +34,8 @@
                         "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^([a-zA-Z][A-Za-z0-9\-]{1,29})$",
-                            "validationMessage": "Only postive numbers are allowed"
+                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-]{1,29})$",
+                            "validationMessage": "Host prefix should begin with alphabets, and contain only alphabets, numbers or hyphen. Should not contain more than 29 characters"
                         }
                     },
                     {
@@ -176,8 +176,8 @@
                         "label": "Database machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^[A-Za-z0-9_]{1,30}$",
-                            "validationMessage": "Only alphanumeric characters and underscores are allowed, and the value must be 1-30 characters long"
+                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-]{1,30})$",
+                            "validationMessage": "Only alphanumeric characters and hyphen are allowed, and the value must be 1-30 characters long"
                         },
                         "options": { }
                     },
