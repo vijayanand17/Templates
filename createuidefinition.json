@@ -94,7 +94,7 @@
                         "toolTip": "Specify a name for the Domain",
                         "constraints": {
                             "required": true,
-                            "regex": "^[a-z0-9A-Z_]{2,30}$",
+                            "regex": "^[a-z0-9A-Z_]{3,30}$",
                             "validationMessage": "Only alphanumeric characters and underscore are allowed. The value must be 3-30"
                         }
                     },
@@ -176,7 +176,7 @@
                         "label": "Database machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{3,30})$",
+                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{2,30})$",
                             "validationMessage": "Only alphanumeric characters, hyphen and dot are allowed. The value must be 3-30 characters long"
                         },
                         "options": { }
