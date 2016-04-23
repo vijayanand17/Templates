@@ -47,7 +47,7 @@
         "SubnetId": "[concat(variables('VNetID'), '/subnets/', parameters('SubnetName'))]",
 
         "imagePublisher": "informatica",
-        "imageOffer": "sqlserver-2014-image",
+        "imageOffer": "sqlserver-2014-image-preview",
         "osVersion": "sqlserver-2014-image-for-pc-bdm"
     },
     "resources": [
