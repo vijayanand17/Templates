@@ -39,19 +39,22 @@ function executeSQLStatement {
     $errorFlag = 1
     $tryCount = 0
 
+    $error.clear()
+
     while($errorFlag -ne 0 -And $tryCount -lt 30) {
-        waitTillDatabaseIsAlive
+        sleep 1
         $tryCount++
         try {
-            writeLog "Error: $error"
-            $error.clear()
             Invoke-Sqlcmd -ServerInstance '(local)' -Database 'model' -Query $sqlStatement
             $errorFlag = $error.Count
         } catch {
-            writeLog "Exception: $error"
             $errorFlag = $error.Count
-            $error.clear()
-        }
+        } finally {
+			if($errorFlag -ne 0) {
+				writeLog "Error: $error"
+				$error.clear()
+			}
+		}
     }
 
     if($errorFlag -eq 1 -And $tryCount -eq 3) {
