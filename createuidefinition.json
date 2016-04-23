@@ -34,8 +34,8 @@
                         "toolTip": "Prefix for machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{1,29})$",
-                            "validationMessage": "Host prefix should begin with alphabets. Only alphanumeric characters, hyphen and dot are allowed. The value must be 1-29 characters long"
+                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{2,29})$",
+                            "validationMessage": "Host prefix should begin with alphabets. Only alphanumeric characters, hyphen and dot are allowed. The value must be 2-29 characters long"
                         }
                     },
                     {
@@ -94,8 +94,8 @@
                         "toolTip": "Specify a name for the Domain",
                         "constraints": {
                             "required": true,
-                            "regex": "^[a-z0-9A-Z_]{1,30}$",
-                            "validationMessage": "Only alphanumeric characters and underscore are allowed. The value must be 1-30"
+                            "regex": "^[a-z0-9A-Z_]{3,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed. The value must be 3-30"
                         }
                     },
                     {
@@ -106,8 +106,8 @@
                         "toolTip": "Domain administrator user name",
                         "constraints": {
                             "required": true,
-                            "regex": "^[a-z0-9A-Z_]{1,30}$",
-                            "validationMessage": "Only alphanumeric characters and underscore are allowed. The value must be 1-30"
+                            "regex": "^[a-z0-9A-Z_]{3,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed. The value must be 3-30"
                         }
                     },
                     {
@@ -176,8 +176,8 @@
                         "label": "Database machine name",
                         "constraints": {
                             "required": true,
-                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{1,30})$",
-                            "validationMessage": "Only alphanumeric characters, hyphen and dot are allowed. The value must be 1-30 characters long"
+                            "regex": "^([a-zA-Z][a-z0-9A-Z\\-\\.]{3,30})$",
+                            "validationMessage": "Only alphanumeric characters, hyphen and dot are allowed. The value must be 3-30 characters long"
                         },
                         "options": { }
                     },
@@ -201,8 +201,7 @@
                         "toolTip": "Admin username for the machines",
                         "osPlatform": "Windows",
                         "constraints": {
-                            "required": true,
-                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                            "required": true
                         }
                     },
                     {
@@ -228,8 +227,8 @@
                         "toolTip": "Database user to be created for communication between Domain and Domain database",
                         "constraints": {
                             "required": true,
-                            "regex": "^[a-z0-9A-Z_]{1,30}$",
-                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 1-30"
+                            "regex": "^[a-z0-9A-Z_]{3,30}$",
+                            "validationMessage": "Only alphanumeric characters and underscore are allowed, and the value must be 3-30"
                         }
                     },
                     {
