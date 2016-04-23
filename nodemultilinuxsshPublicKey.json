@@ -373,19 +373,19 @@
     ],
     "outputs": {
         "fqdn1": {
-            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('VMPublicDNSName'), '1')),providers('Microsoft.Network', 'publicIPAddresses').apiVersions[0]).dnsSettings.fqdn]",
+            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('VMPublicDNSName'), '1')), '2015-06-15').dnsSettings.fqdn]",
             "type": "string"
         },
         "ipaddress1": {
-            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('VMPublicDNSName'), '1')),providers('Microsoft.Network', 'publicIPAddresses').apiVersions[0]).ipAddress]",
+            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('VMPublicDNSName'), '1')), '2015-06-15').ipAddress]",
             "type": "string"
         },
         "fqdn2": {
-            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('VMPublicDNSName'), '2')),providers('Microsoft.Network', 'publicIPAddresses').apiVersions[0]).dnsSettings.fqdn]",
+            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('VMPublicDNSName'), '2')), '2015-06-15').dnsSettings.fqdn]",
             "type": "string"
         },
         "ipaddress2": {
-            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('VMPublicDNSName'), '2')),providers('Microsoft.Network', 'publicIPAddresses').apiVersions[0]).ipAddress]",
+            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',concat(variables('VMPublicDNSName'), '2')), '2015-06-15').ipAddress]",
             "type": "string"
         }
     }
