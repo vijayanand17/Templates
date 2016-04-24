@@ -32,6 +32,12 @@
         "SubnetName": {
             "type": "string"
         },
+        "VNetID": {
+            "type": "string"
+        },
+        "SubnetId": {
+            "type": "string"
+        },
         "baseUrl": {
             "type": "string"
         }
@@ -46,8 +52,8 @@
 
         "InfaCustomVMDisk1": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), '.SQLServer2014.osdisk.vhd')]",
 
-        "VNetID": "[reference('vnetSetup').outputs.vnetId.value]",
-        "SubnetId": "[concat(variables('VNetID'), '/subnets/', parameters('SubnetName'))]",
+        "VNetID": "[parameters('VNetID')]",
+        "SubnetId": "[parameters('SubnetID')]",
 
         "imagePublisher": "informatica",
         "imageOffer": "sqlserver-2014-image-preview",

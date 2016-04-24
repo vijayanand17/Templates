@@ -51,7 +51,7 @@
         "existingVnetRG": {
             "type": "string",
             "defaultValue": "",
-            "metadata": { 
+            "metadata": {
                 "description": "Existing VNET resource group name"
             }
         },
@@ -231,7 +231,10 @@
         "nodeIndex": "[add(mod(add(sub(variables('VMCountInt'),2),sub(variables('VMCountInt'),1)),2),1)]",
         "nodeVMUri": "[concat(variables('baseuri'), variables('nodeUriList')[variables('nodeIndex')],'.json')]",
 
-        "InfaNodeNamePrefix": "node"
+        "InfaNodeNamePrefix": "node",
+
+        "VNetId": "[reference('vnetSetup').outputs.vnetId.value]",
+        "SubnetId": "[concat(variables('VNetID'), '/subnets/', parameters('SubnetName'))]"
     },
     "resources": [
         {
@@ -340,6 +343,13 @@
                     "SubnetName": {
                         "value": "[parameters('subnetName')]"
                     },
+                    "VNetID": {
+                        "value": "[variables('VNetID')]"
+                    },
+                    "SubnetId": {
+                        "value": "[variables('SubnetId')]"
+                    },
+
                     "baseUrl": {
                         "value": "[variables('baseuri')]"
                     }
@@ -360,7 +370,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "location": { 
+                    "location": {
                         "value": "[parameters('location')]"
                     },
                     "storageName": {
