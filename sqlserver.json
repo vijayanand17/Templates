@@ -46,7 +46,7 @@
 
         "InfaCustomVMDisk1": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), '.SQLServer2014.osdisk.vhd')]",
 
-        "VNetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNetName'))]",
+        "VNetID": "[reference('vnetSetup').outputs.vnetId.value]",
         "SubnetId": "[concat(variables('VNetID'), '/subnets/', parameters('SubnetName'))]",
 
         "imagePublisher": "informatica",
