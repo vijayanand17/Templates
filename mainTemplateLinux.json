@@ -355,6 +355,9 @@
                     "SubnetName": {
                         "value": "[parameters('subnetName')]"
                     },
+                    "SubnetId": {
+                        "value": "[concat(reference('vnetSetup').outputs.vnetId.value, '/subnets/', parameters('SubnetName'))]"
+                    },
                     "baseUrl": { 
                         "value": "[variables('baseuri')]"
                     }
@@ -386,6 +389,9 @@
                     },
                     "subnetName": {
                         "value": "[parameters('subnetName')]"
+                    },
+                    "SubnetId": {
+                        "value": "[concat(reference('vnetSetup').outputs.vnetId.value, '/subnets/', parameters('SubnetName'))]"
                     },
                     "VM01Name": {
                         "value": "[parameters('VM01Name')]"
