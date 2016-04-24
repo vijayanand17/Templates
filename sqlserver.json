@@ -55,7 +55,7 @@
     },
     "resources": [
         {
-            "name": "[parameters('VM01Name')]",
+            "name": "[variables('publicDNSName')]",
             "type": "Microsoft.Network/publicIPAddresses",
             "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
@@ -76,7 +76,7 @@
             "location": "[parameters('location')]",
             "apiVersion": "2015-06-15",
             "dependsOn": [
-                "[concat('Microsoft.Network/publicIPAddresses/', parameters('VM01Name'))]"
+                "[concat('Microsoft.Network/publicIPAddresses/', variables('publicDNSName'))]"
             ],
             "tags": {
                 "displayName": "VM01Nic"
@@ -91,7 +91,7 @@
                                 "id": "[variables('SubnetId')]"
                             },
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('VM01Name'))]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicDNSName'))]"
                             }
                         }
                     }
@@ -179,11 +179,11 @@
     ],
     "outputs": {
         "fqdn": {
-            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',parameters('VM01Name')), '2015-06-15').dnsSettings.fqdn]",
+            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicDNSName')), '2015-06-15').dnsSettings.fqdn]",
             "type": "string"
         },
         "ipaddress": {
-            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',parameters('VM01Name')), '2015-06-15').ipAddress]",
+            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicDNSName')), '2015-06-15').ipAddress]",
             "type": "string"
         }
     }
