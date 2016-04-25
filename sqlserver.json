@@ -50,7 +50,7 @@
         "InfaCustomVMDisk1": "[concat('https://', parameters('storageName'), '.blob.core.windows.net/vhds/', parameters('VM01Name'), '.SQLServer2014.osdisk.vhd')]",
 
         "imagePublisher": "informatica",
-        "imageOffer": "sqlserver-2014-image-preview",
+        "imageOffer": "sqlserver-2014-image",
         "osVersion": "sqlserver-2014-image-for-pc-bdm"
     },
     "resources": [
