@@ -3,16 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageExistingOrNew": {
-            "value": "new"
+            "value": "existing"
         },
         "storageName": {
-            "value": "infastorage8"
+            "value": "infacert2895779"
         },
         "vnetExistingOrNew": {
-            "value": "new"
+            "value": "existing"
         },
         "vnetName": {
-            "value": "infavnet8"
+            "value": "infavnet"
         },
         "vnetAddressPrefix": {
             "value": "10.0.0.0/16"
@@ -24,7 +24,7 @@
             "value": "10.0.0.0/24"
         },
         "VM01Name": {
-            "value": "dbvmtestsm"
+            "value": "dbstagedivm"
         },
         "VM01AdminUsername": {
             "value": "devuser"
@@ -38,9 +38,6 @@
         "DBPassword": {
             "value": "tempBG@2008"
         },
-        "VMOSType": {
-            "value": "linux"
-        },
         "VMAdminUserName": {
             "value": "devuser"
         },
@@ -48,10 +45,10 @@
             "value": "tempBG@2008"
         },
         "VMNamePrefix": {
-            "value": "vmtestsm"
+            "value": "stagedivm"
         },
         "VMCount": {
-            "value": 1
+            "value": "3"
         },
         "InfaDomainName": {
             "value": "ISPDomain"
@@ -63,7 +60,7 @@
             "value": "admin"
         },
         "InfaKeyWord": {
-            "value": "ISPNode@123"
+            "value": "ISP@admin123"
         },
         "storageType": {
             "value": "Standard_LRS"
@@ -73,6 +70,15 @@
         },
         "DBVMSize": {
             "value": "Standard_D3"
+        },
+        "location": {
+            "value": "westus"
+        },
+        "existingStorageRG": {
+            "value": " "
+        },
+        "existingVnetRG": {
+            "value": " "
         }
     }
 }

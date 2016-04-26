@@ -1,0 +1,84 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageExistingOrNew": {
+            "value": "new"
+        },
+        "storageName": {
+            "value": "infacer09981231"
+        },
+        "vnetExistingOrNew": {
+            "value": "new"
+        },
+        "vnetName": {
+            "value": "infavnet"
+        },
+        "vnetAddressPrefix": {
+            "value": "10.0.0.0/16"
+        },
+        "subnetName": {
+            "value": "infasubnet"
+        },
+        "subnetPrefix": {
+            "value": "10.0.0.0/24"
+        },
+        "VM01Name": {
+            "value": "dbstagedivmtwo"
+        },
+        "VM01AdminUsername": {
+            "value": "devuser"
+        },
+        "VM01AdminPassword": {
+            "value": "tempBG@2008"
+        },
+        "DBUser": {
+            "value": "user1"
+        },
+        "DBPassword": {
+            "value": "tempBG@2008"
+        },
+        "VMAdminUserName": {
+            "value": "devuser"
+        },
+        "VMAdminPassword": {
+            "value": "tempBG@2008"
+        },
+        "VMNamePrefix": {
+            "value": "stagedivmtwo"
+        },
+        "VMCount": {
+            "value": "1"
+        },
+        "InfaDomainName": {
+            "value": "ISPDomain"
+        },
+        "InfaDomainUser": {
+            "value": "admin"
+        },
+        "InfaDomainPassword": {
+            "value": "admin"
+        },
+        "InfaKeyWord": {
+            "value": "ISP@admin123"
+        },
+        "storageType": {
+            "value": "Standard_LRS"
+        },
+        "NodeVMSize": {
+            "value": "Standard_D11"
+        },
+        "DBVMSize": {
+            "value": "Standard_D3"
+        },
+        "location": {
+            "value": "southcentralus"
+        },
+        "VMAuthType": {
+            "value": "password"
+        },
+        "VMAdminSshPublicKey": {
+            "value": ""
+        }
+    }
+}

@@ -84,7 +84,7 @@
         "InfaDBPort": "1433",
 
         "imagePublisher": "informatica",
-        "imageOffer": "powercenter_10_multi_node_domain_image_byol-preview",
+        "imageOffer": "powercenter_10_multi_node_domain_image_byol",
         "osVersion": "byol_win2012_for_pc_10"
     },
     "resources": [
