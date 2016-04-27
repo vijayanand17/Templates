@@ -42,7 +42,7 @@ function executeSQLStatement {
     $error.clear()
 
     while($errorFlag -ne 0 -And $tryCount -lt 30) {
-        sleep 1
+        sleep 10
         $tryCount++
         try {
             Invoke-Sqlcmd -ServerInstance '(local)' -Database 'model' -Query $sqlStatement
