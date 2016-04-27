@@ -42,7 +42,6 @@ function executeSQLStatement {
     $error.clear()
 
     while($errorFlag -ne 0 -And $tryCount -lt 30) {
-        sleep 10
         $tryCount++
         try {
             Invoke-Sqlcmd -ServerInstance '(local)' -Database 'model' -Query $sqlStatement
@@ -66,7 +65,6 @@ function executeSQLStatement {
 }
 
 $error.clear()
-netsh advfirewall firewall add rule name="Informatica_PC_MMSQL" dir=in action=allow profile=any localport=1433 protocol=TCP
 mkdir -Path C:\Informatica\Archive\scripts 2> $null
 
 writeLog "Creating user: $dbUserName"
@@ -83,3 +81,5 @@ executeSQLStatement $newLogin
 executeSQLStatement $newUser
 executeSQLStatement $updateUserRole
 executeSQLStatement $newSchema
+
+netsh advfirewall firewall add rule name="Informatica_PC_MMSQL" dir=in action=allow profile=any localport=1433 protocol=TCP
