@@ -154,7 +154,7 @@
                         },
                         "constraints": {
                             "required": true,
-                            "regex": "^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d\\W])|(?=.*\\W)(?=.*\\d))|(?=.*\\W)(?=.*[A-Z])(?=.*\\d)).{8,72}$",
+                            //"regex": "^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\\d\\W])|(?=.*\\W)(?=.*\\d))|(?=.*\\W)(?=.*[A-Z])(?=.*\\d)).{8,72}$",
                             "validationMessage": "Keyphrase must be at least 8 characters in length. Should contain at least one special character, number, upper-case and lower-case character"
                         },
                         "options": {
