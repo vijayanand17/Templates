@@ -233,7 +233,11 @@
 
         "InfaNodeNamePrefix": "node",
 
-        "subnetID": "[concat(reference('vnetSetup').outputs.vnetId.value, '/subnets/', parameters('SubnetName'))]"
+        "subnetIDs": {
+            "existing": "[resourceId(parameters('existingVnetRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+            "new": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
+        },
+        "subnetID": "[variables('subnetID')[parameters('existingVnetRG')]]"
     },
     "resources": [
         {
@@ -378,7 +382,7 @@
                         "value": "[parameters('subnetName')]"
                     },
                     "SubnetId": {
-                        "value": "[concat(reference('vnetSetup').outputs.vnetId.value, '/subnets/', parameters('SubnetName'))]"
+                        "value": "[variables('subnetID')]"
                     },
                     "VM01Name": {
                         "value": "[parameters('VM01Name')]"

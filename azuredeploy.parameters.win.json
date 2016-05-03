@@ -48,7 +48,7 @@
             "value": "stagedivm"
         },
         "VMCount": {
-            "value": "3"
+            "value": "1"
         },
         "InfaDomainName": {
             "value": "ISPDomain"
