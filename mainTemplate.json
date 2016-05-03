@@ -227,17 +227,19 @@
             "nodewindows",
             "nodemultiwindows"
         ],
+
         "VMCountInt": "[int(parameters('VMCount'))]",
         "nodeIndex": "[add(mod(add(sub(variables('VMCountInt'),2),sub(variables('VMCountInt'),1)),2),1)]",
         "nodeVMUri": "[concat(variables('baseuri'), variables('nodeUriList')[variables('nodeIndex')],'.json')]",
 
         "InfaNodeNamePrefix": "node",
 
-        "subnetIDs": {
+        "vnetIDs": {
             "existing": "[resourceId(parameters('existingVnetRG'), 'Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
             "new": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
         },
-        "subnetID": "[variables('subnetID')[parameters('existingVnetRG')]]"
+        "vnetID": "[variables('vnetIDs')[parameters('vnetExistingOrNew')]]",
+        "subnetID": "[concat(variables('vnetID'), '/subnets/', parameters('subnetName'))]"
     },
     "resources": [
         {
