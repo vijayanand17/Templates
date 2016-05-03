@@ -318,8 +318,7 @@
                             "addressPrefixSize": "/16"
                         },
                         "constraints": {
-                            "minAddressPrefixSize": "/30",
-                            "minAddressCount": "[steps('nodeVMConfiguration').domainNodeCount]"
+                            "minAddressPrefixSize": "/30"
                         },
                         "subnets": {
                             "subnet1": {
@@ -330,7 +329,7 @@
                                 },
                                 "constraints": {
                                     "minAddressPrefixSize": "/30",
-                                    "minAddressCount": "[steps('nodeVMConfiguration').domainNodeCount]",
+                                    "minAddressCount": "[add(steps('nodeVMConfiguration').domainNodeCount, 1)]",
                                     "requireContiguousAddresses": true
                                 }
                             }
