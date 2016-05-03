@@ -191,6 +191,7 @@
                         "name": "databaseName",
                         "type": "Microsoft.Common.TextBox",
                         "label": "Database machine name",
+                        "defaultValue": "DVM",
                         "constraints": {
                             "required": true,
                             "regex": "^([a-zA-Z][a-z0-9A-Z\\-]{2,30})$",
@@ -317,7 +318,8 @@
                             "addressPrefixSize": "/16"
                         },
                         "constraints": {
-                            "minAddressPrefixSize": "/26"
+                            "minAddressPrefixSize": "/30",
+                            "minAddressCount": "[steps('nodeVMConfiguration').domainNodeCount]"
                         },
                         "subnets": {
                             "subnet1": {
@@ -327,8 +329,8 @@
                                     "addressPrefixSize": "/24"
                                 },
                                 "constraints": {
-                                    "minAddressPrefixSize": "/26",
-                                    "minAddressCount": 2,
+                                    "minAddressPrefixSize": "/30",
+                                    "minAddressCount": "[steps('nodeVMConfiguration').domainNodeCount]",
                                     "requireContiguousAddresses": true
                                 }
                             }
