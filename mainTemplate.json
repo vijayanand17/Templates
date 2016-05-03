@@ -231,7 +231,9 @@
         "nodeIndex": "[add(mod(add(sub(variables('VMCountInt'),2),sub(variables('VMCountInt'),1)),2),1)]",
         "nodeVMUri": "[concat(variables('baseuri'), variables('nodeUriList')[variables('nodeIndex')],'.json')]",
 
-        "InfaNodeNamePrefix": "node"
+        "InfaNodeNamePrefix": "node",
+
+        "subnetID": "[concat(reference('vnetSetup').outputs.vnetId.value, '/subnets/', parameters('SubnetName'))]"
     },
     "resources": [
         {
@@ -341,7 +343,7 @@
                         "value": "[parameters('subnetName')]"
                     },
                     "SubnetId": {
-                        "value": "[concat(reference('vnetSetup').outputs.vnetId.value, '/subnets/', parameters('SubnetName'))]"
+                        "value": "[variables('subnetID')]"
                     },
                     "baseUrl": {
                         "value": "[variables('baseuri')]"
