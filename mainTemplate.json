@@ -239,7 +239,13 @@
             "new": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
         },
         "vnetID": "[variables('vnetIDs')[parameters('vnetExistingOrNew')]]",
-        "subnetID": "[concat(variables('vnetID'), '/subnets/', parameters('subnetName'))]"
+        "subnetID": "[concat(variables('vnetID'), '/subnets/', parameters('subnetName'))]",
+
+        "storageIDs": {
+            "existing": "[resourceId(parameters('existingStorageRG'), 'Microsoft.Storage/storageAccounts', parameters('storageName'))]",
+            "new": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageName'))]"
+        },
+        "storageID": "[variables('storageIDs')[parameters('storageExistingOrNew')]]"
     },
     "resources": [
         {
@@ -376,6 +382,9 @@
                     },
                     "storageName": {
                         "value": "[parameters('storageName')]"
+                    },
+                    "storageID": {
+                        "value": "[variables('storageID')]"
                     },
                     "vnetName": {
                         "value": "[parameters('vnetName')]"
